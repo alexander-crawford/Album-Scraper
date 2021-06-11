@@ -37,5 +37,3 @@ for li in soup.find_all('div','chart-list-item'):
 
 # print output as json
 print(json.dumps(data,sort_keys=True, indent=4))
-
-# TODO: https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-transaction.html
