@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>405</x>
+      <y>342</y>
+      <w>189</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>artist
+--
+id: int &lt;&lt;Primary Key&gt;&gt;
+--
+name: varchar(256)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1035</x>
+      <y>369</y>
+      <w>189</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>album
+--
+id: int &lt;&lt;Primary Key&gt;&gt;
+--
+title: varchar(256)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>342</y>
+      <w>189</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>artist_album
+--
+artist_id: int &lt;&lt;Foreign Key&gt;&gt;
+--
+album_id: int &lt;&lt;Foreign Key&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>351</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>378</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>405</x>
+      <y>477</y>
+      <w>189</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>source
+--
+id: int &lt;&lt;Primary Key&gt;&gt;
+--
+title: varchar(256)
+--
+link: varchar(256)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>684</x>
+      <y>459</y>
+      <w>225</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>list
+--
+position: smallint &lt;&lt;Primary Key&gt;&gt;
+--
+source_id: int &lt;&lt;Foreign Key&gt;&gt;
+--
+album_id: int &lt;&lt;Foreign Key&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>495</y>
+      <w>117</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>396</y>
+      <w>153</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>150.0;10.0;100.0;10.0;100.0;150.0;10.0;150.0</additional_attributes>
+  </element>
+</diagram>
