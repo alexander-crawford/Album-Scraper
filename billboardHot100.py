@@ -4,6 +4,7 @@ import json
 import re
 from collections import OrderedDict
 
+
 def billboard():
     # set url
     url = "https://www.billboard.com/charts/top-album-sales"
@@ -15,13 +16,21 @@ def billboard():
     soup = BeautifulSoup(page.text,'html.parser')
 
     # create dictionary to be returned
-    response = OrderedDict()
+    response = {}
 
     # add status, assume success with code 200
     response['meta'] = {
         'status' : 200,
         'status_message' : 'success'
     }
+
+    def fail(error):
+        response['meta'] = {
+        'status' : 500,
+        'status_message' : error + ' error'
+        }
+        print(response)
+        exit()
 
     # create data list
     data = []
@@ -34,7 +43,13 @@ def billboard():
 
         # add position
         for position in li.find_all('div','chart-list-item__rank'):
-            dict['position'] = re.sub('[^0-9]','',position.get_text())
+            # allow between 1 and 3 single digit numbers only
+            pattern = re.compile('^\d{1,3}$')
+            text = re.sub('[^0-9]','',position.get_text())
+            if pattern.fullmatch(text)!=None:
+                dict['position'] = text
+            else:
+                fail('position')
 
         # add artist
         for artist in li.find_all('div','chart-list-item__artist'):
