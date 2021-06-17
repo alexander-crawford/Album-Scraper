@@ -53,7 +53,18 @@ def billboard():
 
         # add artist
         for artist in li.find_all('div','chart-list-item__artist'):
-            dict['artist'] = re.sub('[^a-zA-Z]','',artist.get_text())
+
+            # get artist name and remove white space
+            text = artist.get_text().strip()
+
+            # Allows two or more non-whitespace characters
+            # or whitespaces
+            pattern = re.compile('[\S ]{2,}')
+
+            if pattern.fullmatch(text) is not None:
+                dict['artist'] = text
+            else:
+                fail('artist')
 
         # add album
         for album in li.find_all('span','chart-list-item__title-text'):
