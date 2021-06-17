@@ -43,9 +43,13 @@ def billboard():
 
         # add position
         for position in li.find_all('div','chart-list-item__rank'):
+
+            # get album position and remove white space
+            text = position.get_text().strip()
+
             # allow between 1 and 3 single digit numbers only
             pattern = re.compile('^\d{1,3}$')
-            text = re.sub('[^0-9]','',position.get_text())
+
             if pattern.fullmatch(text)!=None:
                 dict['position'] = text
             else:
