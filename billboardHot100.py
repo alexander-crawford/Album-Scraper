@@ -61,9 +61,9 @@ def billboard():
             # get artist name and remove white space
             text = artist.get_text().strip()
 
-            # Allows two or more non-whitespace characters
-            # or whitespaces
-            pattern = re.compile('[\S ]{2,}')
+            # Allows one or more instance of a non white space character 
+            # followed by zero or one space character
+            pattern = re.compile('^(\S+ {0,1})+$')
 
             if pattern.fullmatch(text) is not None:
                 dict['artist'] = text
