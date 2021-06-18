@@ -5,7 +5,7 @@ import json
 
 data =  json.loads(billboard.get())
 if data['meta']['status']==200:
-    
+
     # create connection to mysql database
     cnx = mysql.connector.connect(user='root',password='123456', database='album_scraper')
 
@@ -13,7 +13,7 @@ if data['meta']['status']==200:
     cursor = cnx.cursor()
 
     add_artist = (
-    "INSERT INTO artist"
+    "INSERT IGNORE INTO artist"
     "(name)"
     "VALUES (%s)"
     )
