@@ -61,7 +61,7 @@ def billboard():
             # get artist name and remove white space
             text = artist.get_text().strip()
 
-            # Allows one or more instance of a non white space character 
+            # Allows one or more instance of a non white space character
             # followed by zero or one space character
             pattern = re.compile('^(\S+ {0,1})+$')
 
@@ -72,7 +72,19 @@ def billboard():
 
         # add album
         for album in li.find_all('span','chart-list-item__title-text'):
-            dict['album'] = album.get_text().replace('\n','')
+
+            # get album name and remove white space
+            text = album.get_text().strip()
+
+            # Allows one or more instance of a non white space character
+            # followed by zero or one space character
+            pattern = re.compile('^(\S+ {0,1})+$')
+
+            if pattern.fullmatch(text) is not None:
+                dict['album'] = text
+            else:
+                fail('album')
+
 
         # add dictionary to list
         data.append(dict)
