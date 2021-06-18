@@ -4,8 +4,10 @@ import json
 import re
 from collections import OrderedDict
 
+if __name__ == '__main__':
+    get()
 
-def billboard():
+def get():
     # set url
     url = "https://www.billboard.com/charts/top-album-sales"
 
@@ -29,7 +31,7 @@ def billboard():
         'status' : 500,
         'status_message' : error + ' error'
         }
-        print(response)
+        return response
         exit()
 
     # create data list
@@ -92,10 +94,5 @@ def billboard():
     # add data list to response dictionary
     response['data'] = data
 
-    # print output as json
-    print(json.dumps(response,indent=4))
-
     # return data
-    return response
-
-billboard()
+    return json.dumps(response)
