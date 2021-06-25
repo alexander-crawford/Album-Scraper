@@ -23,13 +23,15 @@ def get():
     # add status, assume success with code 200
     response['meta'] = {
         'status' : 200,
-        'status_message' : 'success'
+        'status_message' : 'success',
+        'source' : 'billboard'
     }
 
     def fail(error):
         response['meta'] = {
         'status' : 500,
-        'status_message' : error + ' error'
+        'status_message' : error + ' error',
+        'source' : 'billboard'
         }
         return response
         exit()
