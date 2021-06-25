@@ -39,7 +39,6 @@ TABLES['source'] = (
     "CREATE TABLE IF NOT EXISTS source ("
     "id int UNSIGNED NOT NULL AUTO_INCREMENT,"
     "title varchar(256) NOT NULL,"
-    "link varchar(256) NOT NULL,"
     "PRIMARY KEY (id)"
     ") ENGINE=InnoDB"
 )
