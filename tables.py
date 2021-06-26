@@ -18,6 +18,7 @@ TABLES['album'] = (
     "CREATE TABLE IF NOT EXISTS album ("
     "id int UNSIGNED NOT NULL AUTO_INCREMENT,"
     "title varchar(256) NOT NULL,"
+    "date DATE,"
     "PRIMARY KEY (id)"
     ") ENGINE=InnoDB"
 )

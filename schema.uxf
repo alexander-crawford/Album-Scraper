@@ -22,13 +22,15 @@ name: varchar(256)</panel_attributes>
       <x>1035</x>
       <y>369</y>
       <w>189</w>
-      <h>63</h>
+      <h>81</h>
     </coordinates>
     <panel_attributes>album
 --
 id: int &lt;&lt;Primary Key&gt;&gt;
 --
-title: varchar(256)</panel_attributes>
+title: varchar(256)
+--
+date: date</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
