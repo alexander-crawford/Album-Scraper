@@ -58,7 +58,7 @@ if data['meta']['status']==200:
     result = cursor.fetchone()
     if result==None:
         # if source is not in database add source
-        cursor.execute(add_source,(data['meta']['source']),)
+        cursor.execute(add_source,(data['meta']['source'],))
         source_id = cursor.lastrowid
     else:
         # if in database set source id
