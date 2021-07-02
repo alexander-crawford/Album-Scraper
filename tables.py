@@ -60,7 +60,7 @@ TABLES['list'] = (
 )
 
 # create connection to mysql database
-cnx = mysql.connector.connect(user=config.mysql_username,password=config.mysql_passoword, database='album_scraper')
+cnx = mysql.connector.connect(user=config.mysql_username,password=config.mysql_password, database='album_scraper')
 
 # create cursor
 cursor = cnx.cursor()
