@@ -2,6 +2,9 @@ import mysql.connector
 from mysql.connector import errorcode
 import config
 
+if __name__ == '__main__':
+    connect()
+
 def connect():
     # create table dictionary
     TABLES = {}
