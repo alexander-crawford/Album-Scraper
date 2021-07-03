@@ -3,11 +3,11 @@ import config
 from ratelimit import limits
 
 if __name__ == '__main__':
-    getAlbumCover(seach_string)
+    getAlbumInfo(seach_string)
 
 # no more than 60 calls in a 1 minute period
 @limits(calls=60,period=60)
-def getAlbumCover(seach_string):
+def getAlbumInfo(seach_string):
     url = "https://api.discogs.com/database/search"
 
     querystring = {

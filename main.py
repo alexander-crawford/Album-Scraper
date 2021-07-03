@@ -1,5 +1,6 @@
 import scraper_db
 from scrapers import billboard
+import api
 
 # create connection to scraper_db
 cnx = scraper_db.connect()
