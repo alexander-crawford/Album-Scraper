@@ -1,8 +1,11 @@
-from scraper_db import connect
+import scraper_db
 from scrapers import billboard
 
 # create connection to scraper_db
-cnx = connect.connect()
+cnx = scraper_db.connect()
 
-# get resuts from scraper
+# get results from scraper
 result = billboard.get()
+
+# insert into db providing connection and results 
+scraper_db.insert(cnx,result)
