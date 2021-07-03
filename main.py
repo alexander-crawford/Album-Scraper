@@ -7,5 +7,8 @@ cnx = scraper_db.connect()
 # get results from scraper
 result = billboard.get()
 
-# insert into db providing connection and results 
+# insert into db providing connection and results
 scraper_db.insert(cnx,result)
+
+# disconnect from scraper_db
+cnx.close()
