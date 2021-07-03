@@ -24,7 +24,10 @@ def connect():
         "CREATE TABLE IF NOT EXISTS album ("
         "id int UNSIGNED NOT NULL AUTO_INCREMENT,"
         "title varchar(256) NOT NULL,"
-        "date DATE,"
+        "year DATE,"
+        "image_lrg varchar(256),"
+        "image_sml varchar(256),"
+        "image_alt varchar(256),"
         "PRIMARY KEY (id)"
         ") ENGINE=InnoDB"
     )
