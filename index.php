@@ -1,6 +1,6 @@
 <?php
 
-$mysqli = new mysqli("127.0.0.1", "root", "123456", "album_scraper",3306);
+$mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 
 $result = $mysqli->query("
   SELECT source.title AS source,
