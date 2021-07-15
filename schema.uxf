@@ -22,7 +22,7 @@ name: varchar(256)</panel_attributes>
       <x>1035</x>
       <y>369</y>
       <w>189</w>
-      <h>81</h>
+      <h>135</h>
     </coordinates>
     <panel_attributes>album
 --
@@ -30,7 +30,13 @@ id: int &lt;&lt;Primary Key&gt;&gt;
 --
 title: varchar(256)
 --
-date: date</panel_attributes>
+date: date
+--
+image_lrg: varchar(256)
+--
+image_sml: varchar(256)
+--
+discogs_api: tinyint(1)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
