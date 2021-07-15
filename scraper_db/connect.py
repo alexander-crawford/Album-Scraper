@@ -24,7 +24,7 @@ def connect():
         "CREATE TABLE IF NOT EXISTS album ("
         "id int UNSIGNED NOT NULL AUTO_INCREMENT,"
         "title varchar(256) NOT NULL,"
-        "year DATE,"
+        "year YEAR,"
         "image_lrg varchar(256),"
         "image_sml varchar(256),"
         "discogs_api BOOLEAN default 0,"
