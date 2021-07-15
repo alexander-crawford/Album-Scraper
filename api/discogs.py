@@ -20,9 +20,17 @@ def getAlbumInfo(seach_string):
 
     dict = {}
 
-    if response.json()['results'][0]['type']=='master' and response.status_code == 200:
-        dict['album_cover_url'] = response.json()['results'][0]['cover_image']
-        dict['album_year'] = response.json()['results'][0]['year']
-        return dict
+    if response.status_code == 200:
+        if (response.json()['pagination']['items'] > 0 and
+            response.json()['results'][0]['type']=='master'):
+
+            dict['album_cover_url'] = response.json()['results'][0]['cover_image']
+            dict['album_year'] = response.json()['results'][0]['year']
+
+            return dict
+        else:
+            return None
+
     else:
-        return None
+        print('Discogs api FAIL')
+        exit()
