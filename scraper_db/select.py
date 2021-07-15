@@ -34,7 +34,7 @@ def getNoImage(cnx):
         "INNER JOIN artist_album ON album.id = artist_album.album_id "
         "INNER JOIN artist ON artist_album.artist_id = artist.id "
         "WHERE album.image_lrg IS NULL OR "
-        "WHERE album.image_sml IS NULL"
+        "album.image_sml IS NULL"
     )
 
     # run statement
