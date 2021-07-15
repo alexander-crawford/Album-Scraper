@@ -7,7 +7,16 @@ if __name__ == '__main__':
 
 def insert(cnx,result):
     data = json.loads(result)
+
+    # print source
+    print('\n',data['meta']['source'].upper())
+
     if data['meta']['status']==200:
+
+        # create counters to be printed on script end
+        source_count = 0
+        artist_count = 0
+        album_count = 0
 
         # create cursor
         cursor = cnx.cursor()
@@ -60,6 +69,8 @@ def insert(cnx,result):
             # if source is not in database add source
             cursor.execute(add_source,(data['meta']['source'],))
             source_id = cursor.lastrowid
+            # increment counter
+            source_count += 1
         else:
             # if in database set source id
             source_id = result[0]
@@ -76,6 +87,8 @@ def insert(cnx,result):
                 cursor.execute(add_artist,(data['artist'],))
                 # get id of new row
                 artist_id = cursor.lastrowid
+                # increment counter
+                artist_count += 1
             else:
                 # if in database get artist id
                 artist_id = result[0]
@@ -90,6 +103,8 @@ def insert(cnx,result):
                 # if not in database add album
                 cursor.execute(add_album,(data['album'],))
                 album_id = cursor.lastrowid
+                # increment counter
+                album_count += 1
 
                 # join album and artist
                 cursor.execute(add_artist_album,{
@@ -110,6 +125,15 @@ def insert(cnx,result):
             })
 
 
+        # commnit changes to db
         cnx.commit()
         # reset cursor
         cursor.close()
+
+        # print counters
+        print(source_count,"sources added")
+        print(artist_count,"artists added")
+        print(album_count,"albums added")
+
+    else:
+        print("** fail **")
