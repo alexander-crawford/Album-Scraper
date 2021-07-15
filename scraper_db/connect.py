@@ -27,7 +27,6 @@ def connect():
         "year DATE,"
         "image_lrg varchar(256),"
         "image_sml varchar(256),"
-        "image_alt varchar(256),"
         "PRIMARY KEY (id)"
         ") ENGINE=InnoDB"
     )
