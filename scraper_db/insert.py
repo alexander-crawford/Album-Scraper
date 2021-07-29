@@ -1,7 +1,6 @@
 import mysql.connector
 import json
 import config
-import requests
 
 if __name__ == '__main__':
     insert()
@@ -138,13 +137,3 @@ def insert(cnx,result):
 
     else:
         print("** fail **")
-
-def addImage(cnx,id,url):
-    r = requests.get(url, stream = True)
-    if r.status_code == 200:
-        with open(id + ".jpg","wb") as file:
-            for chunk in r:
-                 if chunk:
-                     file.write(chunk)
-
-    # TODO: write image location to db
