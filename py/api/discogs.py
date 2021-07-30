@@ -1,11 +1,12 @@
 import requests
 import config
-from ratelimit import limits
+from ratelimit import limits, sleep_and_retry
 
 if __name__ == '__main__':
     getAlbumInfo(seach_string)
 
 # no more than 60 calls in a 1 minute period
+@sleep_and_retry
 @limits(calls=60,period=60)
 def getAlbumInfo(seach_string):
     url = "https://api.discogs.com/database/search"
