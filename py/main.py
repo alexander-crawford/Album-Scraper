@@ -19,13 +19,12 @@ for item in scraper_db.getDiscogsAlbums(cnx):
     if result!=None:
 
         # addYear(cnx,year,album_id)
-        year = scraper_db.addYear(cnx,result['album_year'],item[0])
+        scraper_db.addYear(cnx,result['album_year'],item[0])
         # addImage(cnx,url,album_id)
-        image = scraper_db.addImage(cnx,result['album_cover_url'],item[0])
+        scraper_db.addImage(cnx,result['album_cover_url'],item[0])
 
-        if year and image:
-            # discogsApiCalled(cnx,album_id)
-            scraper_db.discogsApiCalled(cnx,item[0])
+    # discogsApiCalled(cnx,album_id)
+    scraper_db.discogsApiCalled(cnx,item[0])
 
 # disconnect from scraper_db
 cnx.close()
