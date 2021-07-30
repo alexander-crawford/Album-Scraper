@@ -22,10 +22,11 @@ def getAlbumInfo(seach_string):
 
     if response.status_code == 200:
         if (response.json()['pagination']['items'] > 0 and
-            response.json()['results'][0]['type']=='master'):
+            (response.json()['results'][0]['type']=='release' or
+            response.json()['results'][0]['type']=='master')):
 
-            dict['album_cover_url'] = response.json()['results'][0]['cover_image']
-            dict['album_year'] = response.json()['results'][0]['year']
+            dict['album_cover_url'] = response.json()['results'][0].get('cover_image')
+            dict['album_year'] = response.json()['results'][0].get('year')
 
             return dict
         else:
