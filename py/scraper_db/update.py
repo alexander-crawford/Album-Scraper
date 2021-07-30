@@ -2,6 +2,7 @@ import pathlib
 import requests
 import os
 import hashlib
+import config
 
 def addYear(cnx,year,album_id):
 
@@ -28,7 +29,7 @@ def addYear(cnx,year,album_id):
 
 def addImage(cnx,url,album_id):
     # set temp path
-    temp_path = "../img/tmp/"
+    temp_path = config.temp_image_path
     # create temp directory
     pathlib.Path(temp_path).mkdir(parents=True, exist_ok=True)
     # create temp file name
@@ -53,7 +54,7 @@ def addImage(cnx,url,album_id):
         filetype = pathlib.Path(temp_path+temp_filename).suffix
 
         # create path
-        pathlib.Path(temp_path[0:7]+ new_path).mkdir(parents=True, exist_ok=True)
+        pathlib.Path(config.image_path + new_path).mkdir(parents=True, exist_ok=True)
 
         # move file
         os.rename(temp_path + temp_filename,temp_path[0:7] + new_path + new_filename + filetype)
