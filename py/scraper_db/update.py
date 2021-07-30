@@ -21,6 +21,11 @@ def addYear(cnx,year,album_id):
     cnx.commit()
     cursor.close()
 
+    if cursor.rowcount == 0:
+        return False
+    else:
+        return True
+
 def addImage(cnx,url,album_id):
     # set temp path
     temp_path = "../img/tmp/"
@@ -69,6 +74,11 @@ def addImage(cnx,url,album_id):
 
         cnx.commit()
         cursor.close()
+
+        if cursor.rowcount == 0:
+            return False
+        else:
+            return True
 
 def discogsApiCalled(cnx,album_id):
 
