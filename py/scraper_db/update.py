@@ -25,20 +25,19 @@ def addYear(cnx,year,album_id):
     if cursor.rowcount == 0:
         return False
     else:
+        print("id",album_id,"added year")
         return True
 
 def addImage(cnx,url,album_id):
-    # set temp path
-    temp_path = config.temp_image_path
     # create temp directory
-    pathlib.Path(temp_path).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(config.temp_image_path).mkdir(parents=True, exist_ok=True)
     # create temp file name
     temp_filename = url.split("/")[-1]
 
     # download image to temp location
     r = requests.get(url, stream = True)
     if r.status_code == 200:
-        with open(temp_path + temp_filename,"wb") as file:
+        with open(config.temp_image_path + temp_filename,"wb") as file:
             for chunk in r:
                  if chunk:
                      file.write(chunk)
@@ -51,13 +50,13 @@ def addImage(cnx,url,album_id):
         # create new path and filename
         new_path = hash[0:2] + "/" + hash[3:5] + "/"
         new_filename = hash[6:]
-        filetype = pathlib.Path(temp_path+temp_filename).suffix
+        filetype = pathlib.Path(config.temp_image_path+temp_filename).suffix
 
         # create path
         pathlib.Path(config.image_path + new_path).mkdir(parents=True, exist_ok=True)
 
         # move file
-        os.rename(temp_path + temp_filename,temp_path[0:7] + new_path + new_filename + filetype)
+        os.rename(config.temp_image_path + temp_filename,config.image_path + new_path + new_filename + filetype)
 
         # insert image location into db
         add_image = (
@@ -79,6 +78,7 @@ def addImage(cnx,url,album_id):
         if cursor.rowcount == 0:
             return False
         else:
+            print("id",album_id,"added cover")
             return True
 
 def discogsApiCalled(cnx,album_id):

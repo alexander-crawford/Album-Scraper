@@ -19,6 +19,11 @@ def getDiscogsAlbums(cnx):
 
     # run statement
     cursor.execute(get_no_image)
+    result = cursor.fetchall()
+
+    # print statements for log
+    print("\n DISCOGS")
+    print(cursor.rowcount,"covers or years required")
 
     # return result
-    return cursor.fetchall()
+    return result
