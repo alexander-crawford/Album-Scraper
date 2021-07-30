@@ -69,3 +69,21 @@ def addImage(cnx,url,album_id):
 
         cnx.commit()
         cursor.close()
+
+def discogsApiCalled(cnx,album_id):
+
+    add_discogs_call = (
+        "UPDATE album "
+        "SET discogs_api = %(true)s "
+        "WHERE id = %(id)s"
+    )
+
+    cursor = cnx.cursor()
+
+    cursor.execute(add_discogs_call,{
+        'true' : 1,
+        'id' : album_id
+    })
+
+    cnx.commit()
+    cursor.close()
