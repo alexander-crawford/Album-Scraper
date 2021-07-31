@@ -4,6 +4,9 @@
   box-sizing: border-box;
 }
 img{
-  width: 250px;
-  height: 250px;
+  max-width: 100%;
+  display: block;
+}
+.grid-item{
+  width: 20%;
 }
