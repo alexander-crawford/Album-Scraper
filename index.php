@@ -7,7 +7,7 @@ $result = $mysqli->query("
   list.position AS position,
   album.title AS album,
   album.year AS year,
-  album.image_lrg AS image,
+  IFNULL(CONCAT('./img/',album.image_lrg),'./img/blank.svg') AS image,
   artist.name AS artist FROM list
   INNER JOIN source ON list.source_id = source.id
   INNER JOIN album ON list.album_id = album.id
@@ -19,38 +19,24 @@ $result = $mysqli->query("
 $mysqli->close();
 
 ?>
-
-<style>
-  table, td {
-    border: 1px solid #333;
-    border-collapse: collapse;
-    padding: 5px;
-  }
-  img{
-    max-width: 100%;
-  }
-</style>
-
-<h1><?php echo $result->fetch_row()[0] ?></h1>
-
-
-<table>
-    <tbody>
-        <tr>
-            <td>Position</td>
-            <td>Artist</td>
-            <td>Album</td>
-            <td>Year</td>
-            <td>Image</td>
-        </tr>
-        <?php foreach ($result as $row): ?>
-          <tr>
-            <td><?php echo $row['position'] ?></td>
-            <td><?php echo $row['artist'] ?></td>
-            <td><?php echo $row['album'] ?></td>
-            <td><?php echo $row['year'] ?></td>
-            <td><img src="./img/<?php echo $row['image'] ?>" alt=""></td>
-          </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Album-Scraper</title>
+    <script type="text/javascript" src="./js/masonry.pkgd.min.js" defer></script>
+    <script type="text/javascript" src="./js/imagesloaded.pkgd.min.js" defer></script>
+    <script type="text/javascript" src="./js/script.js" defer></script>
+    <link rel="stylesheet" href="./css/styles.css">
+  </head>
+  <body>
+    <div class="grid">
+      <?php foreach ($result as $row): ?>
+        <div class="grid-item">
+          <img src="<?php echo $row['image'] ?>" alt="">
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </body>
+</html>
