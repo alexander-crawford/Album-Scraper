@@ -5,7 +5,7 @@ $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 $result = $mysqli->query("
   SELECT source.title AS source,
   list.position AS position,
-  album.title AS album,
+  album.title AS title,
   album.year AS year,
   IFNULL(CONCAT('./img/',album.image_lrg),'./img/blank.svg') AS image,
   artist.name AS artist FROM list
@@ -35,6 +35,12 @@ $mysqli->close();
       <?php foreach ($result as $row): ?>
         <div class="grid-item">
           <img src="<?php echo $row['image'] ?>" alt="">
+          <div class="text-container">
+            <p class="position"><?php echo $row['position'] ?></p>
+            <p class="title"><?php echo $row['title'] ?></p>
+            <p class="artist"><?php echo $row['artist'] ?></p>
+            <p class="year"><?php echo $row['year'] ?></p>
+          </div>
         </div>
       <?php endforeach; ?>
     </div>
