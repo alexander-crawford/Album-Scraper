@@ -53,10 +53,17 @@ img{
   opacity: 1;
 }
 
-/* (2 cols) (less than 500px) */
+/* (1 col) (less than 250px) */
 .grid-item{
-  width: 50%;
+  width: 100%;
   position: relative;
+}
+
+/* (2 cols) (251px to 500px) */
+@media (min-width: 251px) {
+  .grid-item{
+    width: 50%;
+  }
 }
 
 /* (3 cols) (501px to 750px) */
