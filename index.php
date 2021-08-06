@@ -32,6 +32,9 @@ $mysqli->close();
   </head>
   <body>
     <div class="grid">
+      <div class="stamp">
+        <h1><?php echo ucfirst($result->fetch_row()[0]) ?></h1>
+      </div>
       <?php foreach ($result as $row): ?>
         <div class="grid-item">
           <img src="<?php echo $row['image'] ?>" alt="">
