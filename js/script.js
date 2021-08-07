@@ -1,10 +1,10 @@
 var grid = document.querySelector('.grid');
-var msnry = new Masonry( grid, {
+var iso = new Isotope( grid, {
   itemSelector: '.grid-item',
   columnWidth: '.grid-item',
   percentPosition:true,
   stamp: '.stamp'
 });
 imagesLoaded( grid ).on( 'progress', function() {
-  msnry.layout();
+  iso.layout();
 });
