@@ -4,11 +4,12 @@ $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 
 $result = $mysqli->query("
   SELECT source.title AS source,
+  artist.id AS artist_id,
+  IFNULL(CONCAT('./img/',album.image_lrg),'./img/blank.svg') AS image,
   list.position AS position,
   album.title AS title,
-  album.year AS year,
-  IFNULL(CONCAT('./img/',album.image_lrg),'./img/blank.svg') AS image,
-  artist.name AS artist FROM list
+  artist.name AS artist,
+  album.year AS year FROM list
   INNER JOIN source ON list.source_id = source.id
   INNER JOIN album ON list.album_id = album.id
   INNER JOIN artist_album ON album.id = artist_album.album_id
@@ -36,7 +37,8 @@ $mysqli->close();
         <h1><?php echo ucfirst($result->fetch_row()[0]) ?></h1>
       </div>
       <?php foreach ($result as $row): ?>
-        <div class="grid-item">
+        <div class="grid-item" onclick="onClick(this)">
+          <span class="id" hidden><?php echo $row['artist_id'] ?></span>
           <img src="<?php echo $row['image'] ?>" alt="">
           <div class="text-container">
             <p class="position"><?php echo $row['position'] ?></p>
