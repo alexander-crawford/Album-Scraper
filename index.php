@@ -32,22 +32,26 @@ $mysqli->close();
     <link rel="stylesheet" href="./css/styles.css">
   </head>
   <body>
-    <div class="grid">
-      <div class="stamp">
-        <h1><?php echo ucfirst($result->fetch_row()[0]) ?></h1>
-      </div>
-      <?php foreach ($result as $row): ?>
-        <div class="grid-item" onclick="onClick(this)">
-          <span class="id" hidden><?php echo $row['artist_id'] ?></span>
-          <img src="<?php echo $row['image'] ?>" alt="">
-          <div class="text-container">
-            <p class="position"><?php echo $row['position'] ?></p>
-            <p class="title"><?php echo $row['title'] ?></p>
-            <p class="artist"><?php echo $row['artist'] ?></p>
-            <p class="year"><?php echo $row['year'] ?></p>
+      <?php if (is_null($_SERVER['QUERY_STRING'])): ?>
+        <div class="grid">
+          <div class="stamp">
+            <h1><?php echo ucfirst($result->fetch_row()[0]) ?></h1>
           </div>
+          <?php foreach ($result as $row): ?>
+            <div class="grid-item" onclick="onClick(this)">
+              <span class="id" hidden><?php echo $row['artist_id'] ?></span>
+              <img src="<?php echo $row['image'] ?>" alt="">
+              <div class="text-container">
+                <p class="position"><?php echo $row['position'] ?></p>
+                <p class="title"><?php echo $row['title'] ?></p>
+                <p class="artist"><?php echo $row['artist'] ?></p>
+                <p class="year"><?php echo $row['year'] ?></p>
+              </div>
+            </div>
+          <?php endforeach; ?>
         </div>
-      <?php endforeach; ?>
-    </div>
+      <?php else: ?>
+        <?php echo $_SERVER['QUERY_STRING']; ?>
+      <?php endif; ?>
   </body>
 </html>
