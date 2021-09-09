@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import re
 from collections import OrderedDict
+import unicodedata
 
 if __name__ == '__main__':
     get()
@@ -49,7 +50,7 @@ def get():
         for position in li.find_all('div','chart-list-item__rank'):
 
             # get album position and remove white space
-            text = position.get_text().strip()
+            text = unicodedata.normalize("NFKD",position.get_text().strip())
 
             # allow between 1 and 3 single digit numbers only
             pattern = re.compile('^\d{1,3}$')
@@ -63,7 +64,7 @@ def get():
         for artist in li.find_all('div','chart-list-item__artist'):
 
             # get artist name and remove white space
-            text = artist.get_text().strip()
+            text = unicodedata.normalize("NFKD",artist.get_text().strip())
 
             # Allows one or more instance of a non white space character
             # followed by zero or one space character
@@ -78,7 +79,7 @@ def get():
         for album in li.find_all('span','chart-list-item__title-text'):
 
             # get album name and remove white space
-            text = album.get_text().strip()
+            text = unicodedata.normalize("NFKD",album.get_text().strip())
 
             # Allows one or more instance of a non white space character
             # followed by zero or one space character
