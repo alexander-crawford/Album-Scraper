@@ -18,6 +18,7 @@
         $result = $mysqli->query("
           SELECT source.title AS source,
           artist.id AS artist_id,
+          album.id AS album_id,
           IFNULL(CONCAT('./img/',album.image_lrg),'./img/blank.svg') AS image,
           list.position AS position,
           album.title AS title,
@@ -39,7 +40,8 @@
           </div>
           <?php foreach ($result as $row): ?>
             <div class="grid-item" onclick="onClick(this)">
-              <span class="id" hidden><?php echo $row['artist_id'] ?></span>
+              <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
+              <span class="album_id" hidden><?php echo $row['album_id'] ?></span>
               <img src="<?php echo $row['image'] ?>" alt="">
               <div class="text-container">
                 <p class="position"><?php echo $row['position'] ?></p>
@@ -62,12 +64,14 @@
           album.year AS year
           FROM artist INNER JOIN artist_album ON artist.id = artist_album.artist_id
           INNER JOIN album ON artist_album.album_id = album.id
-          WHERE artist.id = (?);
+          WHERE artist.id = (?) AND album.id <> (?);
         ");
 
-        $id = $_SERVER['QUERY_STRING'];
+        $artist_id = $_GET["artist_id"];
 
-        $statement->bind_param("i",$id);
+        $album_id = $_GET["album_id"];
+
+        $statement->bind_param("ii",$artist_id,$album_id);
 
         $statement->execute();
 
@@ -78,10 +82,11 @@
         ?>
 
         <?php foreach ($result as $row): ?>
-          <div class="grid-item" onclick="onClick(this)">
+          <div class="grid-item" >
             <span class="id" hidden></span>
             <img src="<?php echo $row['image'] ?>" alt="">
             <div class="text-container">
+              <p class="position" hidden><?php echo $_GET["position"] ?></p>
               <p class="title"><?php echo $row['title'] ?></p>
               <p class="artist"><?php echo $row['artist'] ?></p>
               <p class="year"><?php echo $row['year'] ?></p>
