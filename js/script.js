@@ -20,7 +20,9 @@ function onClick(data) {
   request.open('GET','http://localhost:8000/?position=' + album_position + '&artist_id=' + artist_id + '&album_id=' + album_id);
   request.responseType = "document";
   request.onload = function () {
-    iso.insert(this.responseXML.body.children)
+    if (this.status = 200) {
+      iso.insert(this.responseXML.body.children)
+    }
   }
   request.send();
 };
