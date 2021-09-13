@@ -12,7 +12,7 @@ var iso = new Isotope( grid, {
 imagesLoaded( grid ).on( 'progress', function() {
   iso.layout();
 });
-function onClick(data) {
+function double(data) {
   artist_id = data.getElementsByClassName('artist_id')[0].innerText;
   album_position = data.getElementsByClassName('position')[0].innerText;
   album_id = data.getElementsByClassName('album_id')[0].innerText;

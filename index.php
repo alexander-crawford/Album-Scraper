@@ -39,7 +39,7 @@
             <h1><?php echo ucfirst($result->fetch_row()[0]) ?></h1>
           </div>
           <?php foreach ($result as $row): ?>
-            <div class="grid-item" onclick="onClick(this)">
+            <div class="grid-item" ondblclick="double(this)">
               <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
               <span class="album_id" hidden><?php echo $row['album_id'] ?></span>
               <img src="<?php echo $row['image'] ?>" alt="">
