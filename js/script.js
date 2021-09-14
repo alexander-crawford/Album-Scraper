@@ -27,6 +27,13 @@ function double(data) {
   request.send();
 };
 function single(data) {
-  data.getElementsByClassName('text-container--off')[0].classList.add('text-container--on');
-  data.getElementsByTagName('img')[0].classList.add('img--off');
+  let text_container = data.getElementsByClassName('text-container--off')[0];
+  let image = data.getElementsByTagName('img')[0];
+  function off() {
+    text_container.classList.remove('text-container--on');
+    image.classList.remove('img--off');
+  }
+  text_container.classList.add('text-container--on');
+  image.classList.add('img--off');
+  setTimeout(off,2000);
 };
