@@ -42,8 +42,15 @@
             <div class="grid-item" onclick="single(this)" ondblclick="double(this)">
               <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
               <span class="album_id" hidden><?php echo $row['album_id'] ?></span>
-              <img src="<?php echo $row['image'] ?>" alt="">
-              <div class="text-container--off">
+              <?php
+                if ($row['image'] == './img/blank.svg') {
+                  echo "<img class=\"img--off\" src=\"" . $row['image'] . "\"alt=\"\">";
+                  echo "<div class=\"text-container text-container-on\">";
+                } else {
+                  echo "<img src=\"" . $row['image'] . "\"alt=\"\">";
+                  echo "<div class=\"text-container text-container--off\">";
+                }
+              ?>
                 <p class="position"><?php echo $row['position'] ?></p>
                 <p class="title"><?php echo $row['title'] ?></p>
                 <p class="artist"><?php echo $row['artist'] ?></p>
@@ -85,7 +92,7 @@
           <div class="grid-item" onclick="single(this)" >
             <span class="id" hidden></span>
             <img src="<?php echo $row['image'] ?>" alt="">
-            <div class="text-container--off">
+            <div class="text-container text-container--off">
               <p class="position" hidden><?php echo $_GET["position"] ?></p>
               <p class="title"><?php echo $row['title'] ?></p>
               <p class="artist"><?php echo $row['artist'] ?></p>

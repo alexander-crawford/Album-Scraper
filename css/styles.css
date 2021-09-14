@@ -22,9 +22,8 @@ img{
   opacity: 0.3;
 }
 
-.text-container--off {
+.text-container {
   transition: .5s ease;
-  opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -33,6 +32,10 @@ img{
   height: 100%;
   width:100%;
   user-select: none;
+}
+
+.text-container--off {
+  opacity: 0;
 }
 
 .text-container--on {
