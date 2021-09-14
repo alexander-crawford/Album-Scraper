@@ -42,7 +42,7 @@
             <div class="grid-item" onclick="single(this)" ondblclick="double(this)">
               <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
               <span class="album_id" hidden><?php echo $row['album_id'] ?></span>
-              <img class="test" src="<?php echo $row['image'] ?>" alt="">
+              <img src="<?php echo $row['image'] ?>" alt="">
               <div class="text-container--off">
                 <p class="position"><?php echo $row['position'] ?></p>
                 <p class="title"><?php echo $row['title'] ?></p>
