@@ -39,11 +39,11 @@
             <h1><?php echo ucfirst($result->fetch_row()[0]) ?></h1>
           </div>
           <?php foreach ($result as $row): ?>
-            <div class="grid-item" ondblclick="double(this)">
+            <div class="grid-item" onclick="single(this)" ondblclick="double(this)">
               <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
               <span class="album_id" hidden><?php echo $row['album_id'] ?></span>
-              <img src="<?php echo $row['image'] ?>" alt="">
-              <div class="text-container">
+              <img class="test" src="<?php echo $row['image'] ?>" alt="">
+              <div class="text-container--off">
                 <p class="position"><?php echo $row['position'] ?></p>
                 <p class="title"><?php echo $row['title'] ?></p>
                 <p class="artist"><?php echo $row['artist'] ?></p>
@@ -82,10 +82,10 @@
         ?>
 
         <?php foreach ($result as $row): ?>
-          <div class="grid-item" >
+          <div class="grid-item" onclick="single(this)" >
             <span class="id" hidden></span>
             <img src="<?php echo $row['image'] ?>" alt="">
-            <div class="text-container">
+            <div class="text-container--off">
               <p class="position" hidden><?php echo $_GET["position"] ?></p>
               <p class="title"><?php echo $row['title'] ?></p>
               <p class="artist"><?php echo $row['artist'] ?></p>

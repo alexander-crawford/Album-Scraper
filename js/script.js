@@ -26,3 +26,7 @@ function double(data) {
   }
   request.send();
 };
+function single(data) {
+  data.getElementsByClassName('text-container--off')[0].classList.add('text-container--on');
+  data.getElementsByTagName('img')[0].classList.add('img--off');
+};

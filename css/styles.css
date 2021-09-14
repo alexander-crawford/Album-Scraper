@@ -18,7 +18,11 @@ img{
   backface-visibility: hidden;
 }
 
-.text-container {
+.img--off{
+  opacity: 0.3;
+}
+
+.text-container--off {
   transition: .5s ease;
   opacity: 0;
   position: absolute;
@@ -28,6 +32,10 @@ img{
   -ms-transform: translate(-50%, -50%);
   height: 100%;
   width:100%;
+}
+
+.text-container--on {
+  opacity: 1;
 }
 
 .text-container p{
@@ -43,14 +51,6 @@ img{
 }
 
 .text-container .year{
-}
-
-.grid-item:hover img {
-  opacity: 0.3;
-}
-
-.grid-item:hover .text-container {
-  opacity: 1;
 }
 
 /* (1 col) (less than 250px) */
