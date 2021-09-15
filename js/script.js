@@ -46,7 +46,11 @@ function press(data,event) {
   const date = new Date();
 
   function long(data) {
-    console.log(data);
+    const url = 'https://duckduckgo.com/?q=';
+    let artist = data.getElementsByClassName('artist')[0].innerText;
+    let album = data.getElementsByClassName('title')[0].innerText;
+    let link = url + artist + " " + album;
+    window.open(link,'_blank')
   };
 
   if (event.type == "mousedown") {
