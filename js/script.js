@@ -37,3 +37,27 @@ function single(data) {
   image.classList.add('img--off');
   setTimeout(off,2000);
 };
+
+var mouse_down;
+var mouse_up;
+var elapsed;
+
+function press(data,event) {
+  const date = new Date();
+
+  function long(data) {
+    console.log(data);
+  };
+
+  if (event.type == "mousedown") {
+    mouse_down = date.getTime();
+  }
+
+  if (event.type == "mouseup") {
+    mouse_up = date.getTime();
+    elapsed = date.getTime() - mouse_down;
+    if (elapsed >= 500) {
+      long(data);
+    }
+  }
+};
