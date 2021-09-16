@@ -1,12 +1,19 @@
 import scraper_db
-from scrapers import billboard
+from scrapers import billboard_top_album_sales as  b_top
+from scrapers import billboard_top_rnb_hiphop_albums as  b_top_rnb_hiphop
 import api
 
 # create connection to scraper_db
 cnx = scraper_db.connect()
 
 # get results from scraper
-result = billboard.get()
+result = b_top.get()
+
+# insert into db providing connection and results
+scraper_db.insert(cnx,result)
+
+# get results from scraper
+result = b_top_rnb_hiphop.get()
 
 # insert into db providing connection and results
 scraper_db.insert(cnx,result)

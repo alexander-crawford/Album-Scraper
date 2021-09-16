@@ -5,8 +5,6 @@ import re
 from collections import OrderedDict
 import unicodedata
 
-if __name__ == '__main__':
-    get()
 
 def get():
     # set url
@@ -25,14 +23,14 @@ def get():
     response['meta'] = {
         'status' : 200,
         'status_message' : 'success',
-        'source' : 'billboard'
+        'source' : 'billboard top album sales'
     }
 
     def fail(error):
         response['meta'] = {
         'status' : 500,
         'status_message' : error + ' error',
-        'source' : 'billboard'
+        'source' : 'billboard top album sales'
         }
         return response
         exit()
@@ -99,3 +97,6 @@ def get():
 
     # return data
     return json.dumps(response)
+
+if __name__ == '__main__':
+    get()
