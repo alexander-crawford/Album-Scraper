@@ -64,7 +64,7 @@ def connect():
         "REFERENCES source (id),"
         "FOREIGN KEY (album_id)"
         "REFERENCES album (id),"
-        "PRIMARY KEY (position)"
+        "PRIMARY KEY (position, source_id)"
         ") ENGINE=InnoDB"
     )
     # create connection to mysql database
