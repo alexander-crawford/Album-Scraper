@@ -34,30 +34,57 @@
         $mysqli->close();
 
         ?>
+
+        <?php
+        // TODO: stamp elements always appear at the top of the page, this needs changing to a grid-item element
+          function printStamp($source)
+          {
+            echo "<div class=\"stamp\">";
+            echo "<h1>" . $source . "</h1>";
+            echo "</div>";
+          }
+        ?>
+
+        <?php
+          function printAlbum($artist_id,$album_id,$image,$position,$title,$artist,$year)
+          {
+            echo "<div class=\"grid-item\" onclick=\"single(this)\" ondblclick=\"double(this)\" onmousedown=\"press(this,event)\" onmouseup=\"press(this,event)\">";
+            echo "<span class=\"artist_id\" hidden>" . $artist_id . "</span>";
+            echo "<span class=\"album_id\" hidden>" . $album_id . "</span>";
+
+            if ($image == './img/blank.svg') {
+              echo "<img class=\"img--off\" src=\"" . $image . "\"alt=\"\">";
+              echo "<div class=\"text-container text-container-on\">";
+            } else {
+              echo "<img src=\"" . $image . "\"alt=\"\">";
+              echo "<div class=\"text-container text-container--off\">";
+            }
+            echo "<p class=\"position\">" . $position . "</p>";
+            echo "<p class=\"title\">" . $title . "</p>";
+            echo "<p class=\"artist\">" . $artist . "</p>";
+            echo "<p class=\"year\">" . $year . "</p>";
+            echo "</div>"; // grid-item
+            echo "</div>"; // text-container
+          }
+        ?>
+
         <div class="grid">
-          <div class="stamp">
-            <h1><?php echo ucfirst($result->fetch_row()[0]) ?></h1>
-          </div>
-          <?php foreach ($result as $row): ?>
-            <div class="grid-item" onclick="single(this)" ondblclick="double(this)" onmousedown="press(this,event)" onmouseup="press(this,event)">
-              <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
-              <span class="album_id" hidden><?php echo $row['album_id'] ?></span>
-              <?php
-                if ($row['image'] == './img/blank.svg') {
-                  echo "<img class=\"img--off\" src=\"" . $row['image'] . "\"alt=\"\">";
-                  echo "<div class=\"text-container text-container-on\">";
-                } else {
-                  echo "<img src=\"" . $row['image'] . "\"alt=\"\">";
-                  echo "<div class=\"text-container text-container--off\">";
-                }
-              ?>
-                <p class="position"><?php echo $row['position'] ?></p>
-                <p class="title"><?php echo $row['title'] ?></p>
-                <p class="artist"><?php echo $row['artist'] ?></p>
-                <p class="year"><?php echo $row['year'] ?></p>
-              </div>
-            </div>
-          <?php endforeach; ?>
+          <?php
+          // TODO: use row number as hidden span and use grid layout to sort by this value
+            $row_number = 0;
+            $source = $result->fetch_row()[0];
+            printStamp($source);
+            foreach ($result as $row) {
+              $row_number++;
+              if ($source == $row['source']) {
+                printAlbum($row['artist_id'],$row['album_id'],$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
+              }else {
+                $source = $row['source'];
+                printStamp($source);
+                printAlbum($row['artist_id'],$row['album_id'],$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
+              }
+            }
+          ?>
         </div>
       <?php else: ?>
         <?php
@@ -89,6 +116,7 @@
         ?>
 
         <?php foreach ($result as $row): ?>
+          <?php // TODO: alter here to make use of print functions  ?>
           <div class="grid-item" onclick="single(this)" >
             <span class="id" hidden></span>
             <img src="<?php echo $row['image'] ?>" alt="">
