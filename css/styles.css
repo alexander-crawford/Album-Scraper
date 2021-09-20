@@ -57,6 +57,11 @@ img{
 .text-container .year{
 }
 
+.grid-item--heading{
+  aspect-ratio:1/1;
+  border-right: solid black 10px;
+}
+
 /* (1 col) (less than 250px) */
 .grid-item{
   width: 100%;

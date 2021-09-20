@@ -36,10 +36,9 @@
         ?>
 
         <?php
-        // TODO: stamp elements always appear at the top of the page, this needs changing to a grid-item element
-          function printStamp($source)
+          function printHeading($source)
           {
-            echo "<div class=\"stamp\">";
+            echo "<div class=\"grid-item grid-item--heading\">";
             echo "<h1>" . $source . "</h1>";
             echo "</div>";
           }
@@ -73,14 +72,14 @@
           // TODO: use row number as hidden span and use grid layout to sort by this value
             $row_number = 0;
             $source = $result->fetch_row()[0];
-            printStamp($source);
+            printHeading($source);
             foreach ($result as $row) {
               $row_number++;
               if ($source == $row['source']) {
                 printAlbum($row['artist_id'],$row['album_id'],$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
               }else {
                 $source = $row['source'];
-                printStamp($source);
+                printHeading($source);
                 printAlbum($row['artist_id'],$row['album_id'],$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
               }
             }
