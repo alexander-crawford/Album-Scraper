@@ -105,20 +105,12 @@
       $result = $statement->get_result();
 
       $mysqli->close();
+
+      foreach ($result as $row) {
+        printAlbum(NULL,NULL,$row['image'],$_GET["position"],
+        $row['title'],$row['artist'],$row['year']);
+      }
     ?>
-    <?php // TODO: alter here to make use of print functions  ?>
-    <?php foreach ($result as $row): ?>
-      <div class="grid-item" onclick="single(this)" >
-        <span class="id" hidden></span>
-        <img src="<?php echo $row['image'] ?>" alt="">
-        <div class="text-container text-container--off">
-          <p class="position" hidden><?php echo $_GET["position"] ?></p>
-          <p class="title"><?php echo $row['title'] ?></p>
-          <p class="artist"><?php echo $row['artist'] ?></p>
-          <p class="year"><?php echo $row['year'] ?></p>
-        </div>
-      </div>
-    <?php endforeach; ?>
     <?php endif; ?>
   </body>
 </html>
