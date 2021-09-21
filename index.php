@@ -11,11 +11,12 @@
   </head>
   <body>
     <?php
-      function printAlbum($artist_id,$album_id,$image,$position,$title,$artist,$year)
+      function printAlbum($artist_id,$album_id,$row_number,$image,$position,$title,$artist,$year)
       {
         echo "<div class=\"grid-item\" onclick=\"single(this)\" ondblclick=\"double(this)\" onmousedown=\"press(this,event)\" onmouseup=\"press(this,event)\">";
         echo "<span class=\"artist_id\" hidden>" . $artist_id . "</span>";
         echo "<span class=\"album_id\" hidden>" . $album_id . "</span>";
+        echo "<span class=\"row_number\" hidden>" . $row_number . "</span>";
 
         if ($image == './img/blank.svg') {
           echo "<img class=\"img--off\" src=\"" . $image . "\"alt=\"\">";
@@ -64,18 +65,17 @@
     ?>
     <div class="grid">
       <?php
-      // TODO: use row number as hidden span and use grid layout to sort by this value
         $row_number = 0;
         $source = $result->fetch_row()[0];
         printHeading($source);
         foreach ($result as $row) {
           $row_number++;
           if ($source == $row['source']) {
-            printAlbum($row['artist_id'],$row['album_id'],$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
+            printAlbum($row['artist_id'],$row['album_id'],$row_number,$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
           }else {
             $source = $row['source'];
             printHeading($source);
-            printAlbum($row['artist_id'],$row['album_id'],$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
+            printAlbum($row['artist_id'],$row['album_id'],$row_number,$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
           }
         }
       ?>
@@ -107,7 +107,7 @@
       $mysqli->close();
 
       foreach ($result as $row) {
-        printAlbum(NULL,NULL,$row['image'],$_GET["position"],
+        printAlbum(NULL,NULL,$_GET["row_number"],$row['image'],$_GET["position"],
         $row['title'],$row['artist'],$row['year']);
       }
     ?>
