@@ -1,20 +1,24 @@
 import scraper_db
 import api
+import scraper as s
+import json
 
 # create connection to scraper_db
 cnx = scraper_db.connect()
 
-# get results from scraper
-result = b_top.get()
+# pull scraper from external json file
+scrapers = json.load(open('scraper.json','r'))
 
-# insert into db providing connection and results
-scraper_db.insert(cnx,result)
+for scraper in scrapers:
+    # for each scraper found in json get album info
+    result = s.scrape(scraper['source_name'],scraper['source_url'], \
+    scraper['container_tag'],scraper['container_class'], \
+    scraper['position_tag'],scraper['position_class'], \
+    scraper['artist_tag'],scraper['artist_class'], \
+    scraper['album_tag'],scraper['album_class'],)
 
-# get results from scraper
-result = b_top_rnb_hiphop.get()
-
-# insert into db providing connection and results
-scraper_db.insert(cnx,result)
+    # insert into db providing connection and results
+    scraper_db.insert(cnx,result)
 
 # get albums where image or year is missing
 for item in scraper_db.getDiscogsAlbums(cnx):
