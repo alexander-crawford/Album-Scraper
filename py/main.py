@@ -1,6 +1,4 @@
 import scraper_db
-from scrapers import billboard_top_album_sales as  b_top
-from scrapers import billboard_top_rnb_hiphop_albums as  b_top_rnb_hiphop
 import api
 
 # create connection to scraper_db
