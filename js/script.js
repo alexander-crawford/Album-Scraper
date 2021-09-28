@@ -15,7 +15,8 @@ imagesLoaded( grid ).on( 'progress', function() {
 let infScroll = new InfiniteScroll( grid, {
   path: '/?page={{#}}',
   append: '.grid-item',
-  outlayer: iso
+  outlayer: iso,
+  scrollThreshold: 500
 });
 function double(data) {
   artist_id = data.getElementsByClassName('artist_id')[0].innerText;
