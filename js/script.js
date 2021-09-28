@@ -6,21 +6,24 @@ var iso = new Isotope( grid, {
   stamp: '.stamp',
   sortBy:'row_number',
   getSortData: {
-    'row_number': '.row_number parseInt'
+    'row_number': '.row_num parseInt'
   }
 });
 imagesLoaded( grid ).on( 'progress', function() {
   iso.layout();
 });
+let infScroll = new InfiniteScroll( grid, {
+  path: '/?page={{#}}',
+  append: '.grid-item',
+  outlayer: iso
+});
 function double(data) {
   artist_id = data.getElementsByClassName('artist_id')[0].innerText;
-  album_position = data.getElementsByClassName('position')[0].innerText;
   album_id = data.getElementsByClassName('album_id')[0].innerText;
-  album_id = data.getElementsByClassName('album_id')[0].innerText;
-  row_number = data.getElementsByClassName('row_number')[0].innerText;
+  row_num = data.getElementsByClassName('row_num')[0].innerText;
   var request = new XMLHttpRequest();
-  request.open('GET','http://localhost:8000/?position=' + album_position + '&artist_id=' + artist_id + '&album_id=' + album_id + '&row_number=' + row_number);
-  console.log('GET','http://localhost:8000/?position=' + album_position + '&artist_id=' + artist_id + '&album_id=' + album_id + '&row_number=' + row_number);
+  request.open('GET','http://localhost:8000/?artist_id=' + artist_id + '&album_id=' + album_id + '&row_num=' + row_num);
+  console.log('GET','http://localhost:8000/?artist_id=' + artist_id + '&album_id=' + album_id + '&row_num=' + row_num);
   request.responseType = "document";
   request.onload = function () {
     if (this.status = 200) {
