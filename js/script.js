@@ -23,7 +23,6 @@ function double(data) {
   row_num = data.getElementsByClassName('row_num')[0].innerText;
   var request = new XMLHttpRequest();
   request.open('GET','http://localhost:8000/?artist_id=' + artist_id + '&album_id=' + album_id + '&row_num=' + row_num);
-  console.log('GET','http://localhost:8000/?artist_id=' + artist_id + '&album_id=' + album_id + '&row_num=' + row_num);
   request.responseType = "document";
   request.onload = function () {
     if (this.status = 200) {
