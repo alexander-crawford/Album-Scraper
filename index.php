@@ -56,7 +56,7 @@
         INNER JOIN artist_album ON album.id = artist_album.album_id
         INNER JOIN artist ON artist_album.artist_id = artist.id
         ORDER BY source.title,list.position
-        LIMIT 25;
+        LIMIT 8;
         ");
 
         $mysqli->close();
@@ -106,11 +106,11 @@
         INNER JOIN artist_album ON album.id = artist_album.album_id
         INNER JOIN artist ON artist_album.artist_id = artist.id
         ORDER BY source.title,list.position
-        LIMIT 25
+        LIMIT 8
         OFFSET ?;
         ");
 
-        $page = ($_GET['page'] * 25) - 25;
+        $page = ($_GET['page'] * 8) - 8;
 
         if (filter_var($_GET['page'],FILTER_VALIDATE_INT)) {
           $statement->bind_param("i",$page);

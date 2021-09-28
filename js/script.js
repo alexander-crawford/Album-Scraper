@@ -16,7 +16,8 @@ let infScroll = new InfiniteScroll( grid, {
   path: '/?page={{#}}',
   append: '.grid-item',
   outlayer: iso,
-  scrollThreshold: 500
+  scrollThreshold: 500,
+  prefill: true
 });
 function double(data) {
   artist_id = data.getElementsByClassName('artist_id')[0].innerText;
