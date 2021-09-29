@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>405</x>
-      <y>342</y>
+      <x>882</x>
+      <y>378</y>
       <w>189</w>
       <h>63</h>
     </coordinates>
@@ -19,116 +19,164 @@ name: varchar(256)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1035</x>
-      <y>369</y>
-      <w>189</w>
-      <h>135</h>
+      <x>531</x>
+      <y>360</y>
+      <w>279</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>album
 --
 id: int &lt;&lt;Primary Key&gt;&gt;
 --
+artist_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;
+--
 title: varchar(256)
 --
 date: date
 --
-image_lrg: varchar(256)
---
-image_sml: varchar(256)
---
-discogs_api: tinyint(1)</panel_attributes>
+image: varchar(256)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>720</x>
-      <y>342</y>
+      <x>0</x>
+      <y>468</y>
       <w>189</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>artist_album
---
-artist_id: int &lt;&lt;Foreign Key&gt;&gt;
---
-album_id: int &lt;&lt;Foreign Key&gt;&gt;</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>585</x>
-      <y>351</y>
-      <w>153</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>900</x>
-      <y>378</y>
-      <w>153</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>405</x>
-      <y>477</y>
-      <w>189</w>
-      <h>63</h>
+      <h>198</h>
     </coordinates>
     <panel_attributes>source
 --
 id: int &lt;&lt;Primary Key&gt;&gt;
 --
-title: varchar(256)
+name: varchar(256)
+--
+url 
+--
+container_tag 
+--
+container_class 
+--
+artist_tag 
+--
+artist_class 
+--
+album_tag 
+--
+album_class </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>207</x>
+      <y>477</y>
+      <w>288</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>source_album
+--
+source_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;
+--
+album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>486</y>
+      <w>45</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>387</y>
+      <w>63</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>50.0;10.0;30.0;10.0;30.0;160.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>801</x>
+      <y>387</y>
+      <w>99</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1188</x>
+      <y>189</y>
+      <w>279</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>api
+--
+id: int &lt;&lt;Primary Key&gt;&gt;
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>369</x>
+      <y>252</y>
+      <w>396</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>TODOs
+source table is missing data types 
+api table is missing columns  
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>684</x>
-      <y>459</y>
-      <w>225</w>
-      <h>81</h>
+      <x>846</x>
+      <y>171</y>
+      <w>288</w>
+      <h>63</h>
     </coordinates>
-    <panel_attributes>list
+    <panel_attributes>album_api
 --
-position: smallint &lt;&lt;Primary Key&gt;&gt;
+album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;
 --
-source_id: int &lt;&lt;Foreign Key&gt;&gt;
---
-album_id: int &lt;&lt;Foreign Key&gt;&gt;</panel_attributes>
+api_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>585</x>
-      <y>495</y>
-      <w>117</w>
-      <h>36</h>
+      <x>801</x>
+      <y>189</y>
+      <w>63</w>
+      <h>225</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+    <additional_attributes>10.0;230.0;30.0;230.0;30.0;10.0;50.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>396</y>
-      <w>153</w>
-      <h>153</h>
+      <x>1125</x>
+      <y>207</y>
+      <w>81</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>150.0;10.0;100.0;10.0;100.0;150.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
   </element>
 </diagram>
