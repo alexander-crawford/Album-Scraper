@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>909</x>
+      <x>936</x>
       <y>468</y>
       <w>189</w>
       <h>63</h>
@@ -19,7 +19,7 @@ name: varchar(256)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>558</x>
+      <x>585</x>
       <y>450</y>
       <w>279</w>
       <h>117</h>
@@ -40,7 +40,7 @@ image: varchar(256)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>18</x>
+      <x>0</x>
       <y>558</y>
       <w>198</w>
       <h>198</h>
@@ -69,44 +69,44 @@ album_class: varchar(256) </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>234</x>
+      <x>225</x>
       <y>567</y>
-      <w>288</w>
+      <w>315</w>
       <h>63</h>
     </coordinates>
     <panel_attributes>source_album
 --
 source_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;
 --
-album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attributes>
+album_id: smallint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>207</x>
+      <x>189</x>
       <y>576</y>
-      <w>45</w>
+      <w>54</w>
       <h>36</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;20.0;30.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;40.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>513</x>
+      <x>531</x>
       <y>477</y>
-      <w>63</w>
+      <w>72</w>
       <h>162</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>50.0;10.0;30.0;10.0;30.0;160.0;10.0;160.0</additional_attributes>
+    <additional_attributes>60.0;10.0;40.0;10.0;40.0;160.0;10.0;160.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>828</x>
+      <x>855</x>
       <y>477</y>
       <w>99</w>
       <h>36</h>
@@ -117,14 +117,14 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1215</x>
+      <x>1242</x>
       <y>279</y>
-      <w>144</w>
+      <w>162</w>
       <h>81</h>
     </coordinates>
     <panel_attributes>api
 --
-id: int &lt;&lt;Primary Key&gt;&gt;
+id: tinyint &lt;&lt;Primary Key&gt;&gt;
 --
 name: varchar(256)
 --
@@ -135,22 +135,22 @@ called: boolean
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>873</x>
+      <x>900</x>
       <y>261</y>
-      <w>288</w>
+      <w>315</w>
       <h>63</h>
     </coordinates>
     <panel_attributes>album_api
 --
-album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;
+album_id: smallint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;
 --
-api_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attributes>
+api_id: tinyint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>828</x>
+      <x>855</x>
       <y>279</y>
       <w>63</w>
       <h>225</h>
@@ -161,12 +161,12 @@ api_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attri
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1152</x>
+      <x>1206</x>
       <y>297</y>
-      <w>81</w>
+      <w>54</w>
       <h>36</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;40.0;20.0</additional_attributes>
   </element>
 </diagram>
