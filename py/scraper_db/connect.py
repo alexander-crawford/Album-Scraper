@@ -50,19 +50,19 @@ def connect():
         ") ENGINE=InnoDB"
     )
 
-    # add source_album table 
-    TABLES['list'] = (
-        "CREATE TABLE IF NOT EXISTS list ("
-        "position smallint UNSIGNED NOT NULL,"
-        "source_id int UNSIGNED,"
-        "album_id int UNSIGNED,"
+    # add source_album table
+    TABLES['source_album'] = (
+        "CREATE TABLE IF NOT EXISTS source_album ("
+        "source_id int UNSIGNED NOT NULL,"
+        "album_id smallint UNSIGNED NOT NULL,"
         "FOREIGN KEY (source_id)"
         "REFERENCES source (id),"
         "FOREIGN KEY (album_id)"
         "REFERENCES album (id),"
-        "PRIMARY KEY (position, source_id)"
+        "PRIMARY KEY (source_id, album_id)"
         ") ENGINE=InnoDB"
     )
+    
     # create connection to mysql database
     cnx = mysql.connector.connect(user=config.mysql_username,password=config.mysql_password)
 
