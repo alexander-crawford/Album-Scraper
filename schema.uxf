@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>882</x>
-      <y>513</y>
+      <x>909</x>
+      <y>468</y>
       <w>189</w>
       <h>63</h>
     </coordinates>
@@ -19,8 +19,8 @@ name: varchar(256)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>531</x>
-      <y>495</y>
+      <x>558</x>
+      <y>450</y>
       <w>279</w>
       <h>117</h>
     </coordinates>
@@ -40,8 +40,8 @@ image: varchar(256)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>603</y>
+      <x>27</x>
+      <y>558</y>
       <w>189</w>
       <h>198</h>
     </coordinates>
@@ -69,8 +69,8 @@ album_class: varchar(256) </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>207</x>
-      <y>612</y>
+      <x>234</x>
+      <y>567</y>
       <w>288</w>
       <h>63</h>
     </coordinates>
@@ -84,8 +84,8 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>621</y>
+      <x>207</x>
+      <y>576</y>
       <w>45</w>
       <h>36</h>
     </coordinates>
@@ -95,8 +95,8 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>486</x>
-      <y>522</y>
+      <x>513</x>
+      <y>477</y>
       <w>63</w>
       <h>162</h>
     </coordinates>
@@ -106,8 +106,8 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>801</x>
-      <y>522</y>
+      <x>828</x>
+      <y>477</y>
       <w>99</w>
       <h>36</h>
     </coordinates>
@@ -117,35 +117,26 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1188</x>
-      <y>324</y>
-      <w>279</w>
-      <h>135</h>
+      <x>1215</x>
+      <y>279</y>
+      <w>144</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>api
 --
 id: int &lt;&lt;Primary Key&gt;&gt;
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>369</x>
-      <y>387</y>
-      <w>396</w>
-      <h>81</h>
-    </coordinates>
-    <panel_attributes>TODOs
-api table is missing columns  
+--
+name: varchar(256)
+--
+called: boolean
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>846</x>
-      <y>306</y>
+      <x>873</x>
+      <y>261</y>
       <w>288</w>
       <h>63</h>
     </coordinates>
@@ -159,8 +150,8 @@ api_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attri
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>801</x>
-      <y>324</y>
+      <x>828</x>
+      <y>279</y>
       <w>63</w>
       <h>225</h>
     </coordinates>
@@ -170,8 +161,8 @@ api_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attri
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1125</x>
-      <y>342</y>
+      <x>1152</x>
+      <y>297</y>
       <w>81</w>
       <h>36</h>
     </coordinates>
