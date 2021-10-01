@@ -39,6 +39,13 @@ def connect():
         "CREATE TABLE IF NOT EXISTS source ("
         "id int UNSIGNED NOT NULL AUTO_INCREMENT,"
         "title varchar(256) NOT NULL,"
+        "url varchar(256) NOT NULL,"
+        "container_tag varchar(20) NOT NULL,"
+        "container_class varchar(256) NOT NULL,"
+        "artist_tag varchar(20) NOT NULL,"
+        "artist_class varchar(256) NOT NULL,"
+        "album_tag varchar(20) NOT NULL,"
+        "album_class varchar(256) NOT NULL,"
         "PRIMARY KEY (id)"
         ") ENGINE=InnoDB"
     )
