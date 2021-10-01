@@ -1,13 +1,12 @@
 import scraper_db
 import api
 import scraper as s
-import json
 
 # create connection to scraper_db
 cnx = scraper_db.connect()
 
-# pull scraper from external json file
-scrapers = json.load(open('scraper.json','r'))
+# get source information from database
+sources = scraper_db.getSources(cnx)
 
 for scraper in scrapers:
     # for each scraper found in json get album info

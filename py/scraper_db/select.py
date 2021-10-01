@@ -27,3 +27,27 @@ def getDiscogsAlbums(cnx):
 
     # return result
     return result
+
+def getSources(cnx):
+    # create cursor
+    cursor = cnx.cursor(dictionary=True)
+
+    # create select statement
+    get_sources = (
+        "SELECT title as source,"
+        "url,"
+        "container_tag,"
+        "container_class,"
+        "artist_tag,"
+        "artist_class,"
+        "album_tag,"
+        "album_class "
+        "FROM source"
+    )
+
+    # run statement
+    cursor.execute(get_sources)
+    result = cursor.fetchall()
+
+    # return result
+    return result
