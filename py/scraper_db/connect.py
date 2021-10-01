@@ -22,14 +22,15 @@ def connect():
     # add table album
     TABLES['album'] = (
         "CREATE TABLE IF NOT EXISTS album ("
-        "id int UNSIGNED NOT NULL AUTO_INCREMENT,"
+        "id smallint UNSIGNED NOT NULL AUTO_INCREMENT,"
+        "artist_id int UNSIGNED NOT NULL,"
         "title varchar(256) NOT NULL,"
         "year YEAR,"
-        "image_lrg varchar(256),"
-        "image_sml varchar(256),"
-        "discogs_api BOOLEAN default 0,"
-        "PRIMARY KEY (id), "
-        "UNIQUE KEY (image_lrg, image_sml)"
+        "image varchar(256),"
+        "PRIMARY KEY (id,artist_id),"
+        "UNIQUE KEY (image),"
+        "FOREIGN KEY (artist_id)"
+        "REFERENCES artist (id)"
         ") ENGINE=InnoDB"
     )
 
