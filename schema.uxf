@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>882</x>
-      <y>378</y>
+      <y>513</y>
       <w>189</w>
       <h>63</h>
     </coordinates>
@@ -20,7 +20,7 @@ name: varchar(256)</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>531</x>
-      <y>360</y>
+      <y>495</y>
       <w>279</w>
       <h>117</h>
     </coordinates>
@@ -41,7 +41,7 @@ image: varchar(256)</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>468</y>
+      <y>603</y>
       <w>189</w>
       <h>198</h>
     </coordinates>
@@ -51,26 +51,26 @@ id: int &lt;&lt;Primary Key&gt;&gt;
 --
 name: varchar(256)
 --
-url 
+url: varchar(256)
 --
-container_tag 
+container_tag: varchar(20) 
 --
-container_class 
+container_class: varchar(256)
 --
-artist_tag 
+artist_tag: varchar(20) 
 --
-artist_class 
+artist_class: varchar(256) 
 --
-album_tag 
+album_tag: varchar(20) 
 --
-album_class </panel_attributes>
+album_class: varchar(256) </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>207</x>
-      <y>477</y>
+      <y>612</y>
       <w>288</w>
       <h>63</h>
     </coordinates>
@@ -85,7 +85,7 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
     <id>Relation</id>
     <coordinates>
       <x>180</x>
-      <y>486</y>
+      <y>621</y>
       <w>45</w>
       <h>36</h>
     </coordinates>
@@ -96,7 +96,7 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
     <id>Relation</id>
     <coordinates>
       <x>486</x>
-      <y>387</y>
+      <y>522</y>
       <w>63</w>
       <h>162</h>
     </coordinates>
@@ -107,7 +107,7 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
     <id>Relation</id>
     <coordinates>
       <x>801</x>
-      <y>387</y>
+      <y>522</y>
       <w>99</w>
       <h>36</h>
     </coordinates>
@@ -118,7 +118,7 @@ album_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_att
     <id>UMLClass</id>
     <coordinates>
       <x>1188</x>
-      <y>189</y>
+      <y>324</y>
       <w>279</w>
       <h>135</h>
     </coordinates>
@@ -132,12 +132,11 @@ id: int &lt;&lt;Primary Key&gt;&gt;
     <id>UMLClass</id>
     <coordinates>
       <x>369</x>
-      <y>252</y>
+      <y>387</y>
       <w>396</w>
       <h>81</h>
     </coordinates>
     <panel_attributes>TODOs
-source table is missing data types 
 api table is missing columns  
 </panel_attributes>
     <additional_attributes/>
@@ -146,7 +145,7 @@ api table is missing columns
     <id>UMLClass</id>
     <coordinates>
       <x>846</x>
-      <y>171</y>
+      <y>306</y>
       <w>288</w>
       <h>63</h>
     </coordinates>
@@ -161,7 +160,7 @@ api_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attri
     <id>Relation</id>
     <coordinates>
       <x>801</x>
-      <y>189</y>
+      <y>324</y>
       <w>63</w>
       <h>225</h>
     </coordinates>
@@ -172,7 +171,7 @@ api_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_attri
     <id>Relation</id>
     <coordinates>
       <x>1125</x>
-      <y>207</y>
+      <y>342</y>
       <w>81</w>
       <h>36</h>
     </coordinates>
