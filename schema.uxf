@@ -40,9 +40,9 @@ image: varchar(256)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>27</x>
+      <x>18</x>
       <y>558</y>
-      <w>189</w>
+      <w>198</w>
       <h>198</h>
     </coordinates>
     <panel_attributes>source
