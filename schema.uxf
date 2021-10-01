@@ -32,7 +32,7 @@ artist_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;
 --
 title: varchar(256)
 --
-date: date
+year: year
 --
 image: varchar(256)</panel_attributes>
     <additional_attributes/>
