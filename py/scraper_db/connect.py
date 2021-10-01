@@ -9,7 +9,7 @@ def connect():
     # create table dictionary
     TABLES = {}
 
-    # add table artist
+    # add artist table
     TABLES['artist'] = (
         "CREATE TABLE IF NOT EXISTS artist ("
         "id int UNSIGNED NOT NULL AUTO_INCREMENT,"
@@ -19,7 +19,7 @@ def connect():
         ") ENGINE=InnoDB"
     )
 
-    # add table album
+    # add album table
     TABLES['album'] = (
         "CREATE TABLE IF NOT EXISTS album ("
         "id smallint UNSIGNED NOT NULL AUTO_INCREMENT,"
@@ -34,7 +34,7 @@ def connect():
         ") ENGINE=InnoDB"
     )
 
-    # add table source
+    # add source table
     TABLES['source'] = (
         "CREATE TABLE IF NOT EXISTS source ("
         "id int UNSIGNED NOT NULL AUTO_INCREMENT,"
@@ -50,7 +50,7 @@ def connect():
         ") ENGINE=InnoDB"
     )
 
-    # add table list
+    # add source_album table 
     TABLES['list'] = (
         "CREATE TABLE IF NOT EXISTS list ("
         "position smallint UNSIGNED NOT NULL,"
