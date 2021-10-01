@@ -34,18 +34,6 @@ def connect():
         ") ENGINE=InnoDB"
     )
 
-    # add table artist_album
-    TABLES['artist_album'] = (
-        "CREATE TABLE IF NOT EXISTS artist_album ("
-        "artist_id int UNSIGNED NOT NULL,"
-        "album_id int UNSIGNED NOT NULL,"
-        "FOREIGN KEY (artist_id)"
-        "REFERENCES artist (id),"
-        "FOREIGN KEY (album_id)"
-        "REFERENCES album (id)"
-        ") ENGINE=InnoDB"
-    )
-
     # add table source
     TABLES['source'] = (
         "CREATE TABLE IF NOT EXISTS source ("
