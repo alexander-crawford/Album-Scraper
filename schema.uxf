@@ -26,7 +26,7 @@ name: varchar(256)</panel_attributes>
     </coordinates>
     <panel_attributes>album
 --
-id: int &lt;&lt;Primary Key&gt;&gt;
+id: smallint &lt;&lt;Primary Key&gt;&gt;
 --
 artist_id: int &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;
 --
