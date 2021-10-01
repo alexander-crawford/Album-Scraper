@@ -74,6 +74,19 @@ def connect():
         ") ENGINE=InnoDB"
     )
 
+    # add album_api table
+    TABLES['album_api'] = (
+        "CREATE TABLE IF NOT EXISTS album_api ("
+        "album_id smallint UNSIGNED NOT NULL,"
+        "api_id tinyint UNSIGNED NOT NULL,"
+        "FOREIGN KEY (album_id)"
+        "REFERENCES album (id),"
+        "FOREIGN KEY (api_id)"
+        "REFERENCES api (id),"
+        "PRIMARY KEY (album_id, api_id)"
+        ") ENGINE=InnoDB"
+    )
+
     # create connection to mysql database
     cnx = mysql.connector.connect(user=config.mysql_username,password=config.mysql_password)
 
