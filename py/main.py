@@ -1,6 +1,6 @@
 import scraper_db
 import api
-import scraper as s
+import scraper
 
 # create connection to scraper_db
 cnx = scraper_db.connect()
@@ -8,16 +8,15 @@ cnx = scraper_db.connect()
 # get source information from database
 sources = scraper_db.getSources(cnx)
 
-for scraper in scrapers:
-    # for each scraper found in json get album info
-    result = s.scrape(scraper['source_name'],scraper['source_url'], \
-    scraper['container_tag'],scraper['container_class'], \
-    scraper['position_tag'],scraper['position_class'], \
-    scraper['artist_tag'],scraper['artist_class'], \
-    scraper['album_tag'],scraper['album_class'],)
+for source in sources:
+    # for each source scrape site
+    result = scraper.scrape(source['name'],source['url'],source['container_tag'], \
+    source['container_class'],source['artist_tag'],source['artist_class'], \
+    source['album_tag'],source['album_class'])
 
     # insert into db providing connection and results
     scraper_db.insert(cnx,result)
+    # print(result)
 
 # get albums where image or year is missing
 for item in scraper_db.getDiscogsAlbums(cnx):
