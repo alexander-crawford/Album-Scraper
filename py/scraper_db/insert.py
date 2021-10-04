@@ -2,8 +2,6 @@ import mysql.connector
 import json
 import config
 
-if __name__ == '__main__':
-    insert()
 
 def insert(cnx,result):
     data = json.loads(result)
@@ -137,3 +135,6 @@ def insert(cnx,result):
 
     else:
         print("** fail **")
+
+if __name__ == '__main__':
+    insert()
