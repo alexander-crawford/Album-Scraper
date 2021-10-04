@@ -5,7 +5,7 @@ import re
 from collections import OrderedDict
 import unicodedata
 
-def scrape(source_name,source_url,container_tag,container_class,position_tag,position_class,artist_tag,artist_class,album_tag,album_class):
+def scrape(source_name,source_url,container_tag,container_class,artist_tag,artist_class,album_tag,album_class):
 
     # get the page
     page = requests.get(source_url)
@@ -41,27 +41,8 @@ def scrape(source_name,source_url,container_tag,container_class,position_tag,pos
     # iterate over soup object
     for li in soup.find_all(container_tag,container_class):
 
-
         # create dictionary
         dict = {}
-
-        if position_tag is None or position_class is None:
-            position_counter += 1
-            dict['position'] = position_counter
-        else:
-            # add position
-            for position in li.find_all(position_tag,position_class):
-
-                # get album position and remove white space
-                text = unicodedata.normalize("NFKD",position.get_text().strip())
-
-                # allow between 1 and 3 single digit numbers only
-                pattern = re.compile('^\d{1,3}$')
-
-                if pattern.fullmatch(text)!=None:
-                    dict['position'] = text
-                else:
-                    fail('position')
 
         # add artist
         for artist in li.find_all(artist_tag,artist_class):
