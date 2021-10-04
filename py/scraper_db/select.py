@@ -34,7 +34,7 @@ def getSources(cnx):
 
     # create select statement
     get_sources = (
-        "SELECT title as source,"
+        "SELECT title as name,"
         "url,"
         "container_tag,"
         "container_class,"
