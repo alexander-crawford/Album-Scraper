@@ -2,8 +2,40 @@ import mysql.connector
 import json
 import config
 
-
 def insert(cnx,result):
+    # Returns artist id for artist name given as argument value
+    # if artist is not found in db a new entry is added and the id returned
+    def getArtistID(artist_name):
+
+        get_artist = (
+            "SELECT id FROM artist "
+            "WHERE name = (%s)"
+        )
+
+        add_artist = (
+            "INSERT INTO artist "
+            "(name) "
+            "VALUES (%s)"
+        )
+
+        # check if artist is already in database
+        cursor.execute(get_artist,(artist_name,))
+        result = cursor.fetchone()
+
+        if result==None:
+            # if not in database add artist
+            cursor.execute(add_artist,(data['artist'],))
+
+            # increment counter
+            artist_count += 1
+
+            # return id of new row
+            return cursor.lastrowid
+
+        else:
+            # if in database return artist id
+            return result[0]
+
     data = json.loads(result)
 
     # print source
@@ -11,23 +43,15 @@ def insert(cnx,result):
 
     if data['meta']['status']==200:
 
+
         # create counters to be printed on script end
-        source_count = 0
         artist_count = 0
         album_count = 0
 
         # create cursor
         cursor = cnx.cursor()
 
-        add_artist = (
-            "INSERT INTO artist "
-            "(name) "
-            "VALUES (%s)"
-        )
-        get_artist = (
-            "SELECT id FROM artist "
-            "WHERE name = (%s)"
-        )
+
         add_album = (
             "INSERT INTO album "
             "(title) "
@@ -74,22 +98,8 @@ def insert(cnx,result):
             source_id = result[0]
 
         for data in data['data']:
-            artist_id = ''
+            artist_id = get_artist(data['artist'])
             album_id = ''
-
-            # check if artist is already in database
-            cursor.execute(get_artist,(data['artist'],))
-            result = cursor.fetchone()
-            if result==None:
-                # if not in database add artist
-                cursor.execute(add_artist,(data['artist'],))
-                # get id of new row
-                artist_id = cursor.lastrowid
-                # increment counter
-                artist_count += 1
-            else:
-                # if in database get artist id
-                artist_id = result[0]
 
             # check if album is already in database
             cursor.execute(get_album,{
