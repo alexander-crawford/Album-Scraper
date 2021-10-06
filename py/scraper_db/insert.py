@@ -5,7 +5,7 @@ import config
 def insert(cnx,result):
     # Returns artist id for artist name given as argument value
     # if artist is not found in db a new entry is added and the id returned
-    def getArtistID(artist_name):
+    def getArtistID(artist):
 
         get_artist = (
             "SELECT id FROM artist "
@@ -19,7 +19,7 @@ def insert(cnx,result):
         )
 
         # check if artist is already in database
-        cursor.execute(get_artist,(artist_name,))
+        cursor.execute(get_artist,(artist,))
         result = cursor.fetchone()
 
         if result==None:
@@ -36,13 +36,52 @@ def insert(cnx,result):
             # if in database return artist id
             return result[0]
 
+    # Returns album id for album name given as argument value
+    # if album is not found in db a new entry is added and the id returned
+    def getAlbumID(artist_id,album_title):
+
+        get_album = (
+            "SELECT id FROM album "
+            "WHERE title = %(album)s AND artist_id = %(artist)s"
+        )
+
+        add_album = (
+            "INSERT INTO album "
+            "(title,artist_id) "
+            "VALUES (%(album)s,%(artist)s)"
+        )
+
+        # check if album is already in database
+        cursor.execute(get_album,{
+            'album' : album_title,
+            'artist' : artist_id
+        })
+        result = cursor.fetchone()
+
+        if result==None:
+            # if not in database add album
+            cursor.execute(add_album,{
+                'album' : album_title,
+                'artist' : artist_id
+            })
+
+            # increment counter
+            album_count += 1
+
+            # return album id
+            return cursor.lastrowid
+
+
+        else:
+            # if in database return album id
+            return result[0]
+
     data = json.loads(result)
 
     # print source
     print('\n',data['meta']['source'].upper())
 
     if data['meta']['status']==200:
-
 
         # create counters to be printed on script end
         artist_count = 0
@@ -51,18 +90,6 @@ def insert(cnx,result):
         # create cursor
         cursor = cnx.cursor()
 
-
-        add_album = (
-            "INSERT INTO album "
-            "(title) "
-            "VALUES (%s)"
-        )
-        get_album = (
-            "SELECT album.id FROM album "
-            "INNER JOIN artist_album ON album.id = artist_album.album_id "
-            "INNER JOIN artist ON artist_album.artist_id = artist.id "
-            "WHERE artist.id = %(artist)s AND album.title = %(album)s"
-        )
         add_artist_album = (
             "INSERT INTO artist_album "
             "(artist_id,album_id) "
@@ -99,31 +126,13 @@ def insert(cnx,result):
 
         for data in data['data']:
             artist_id = get_artist(data['artist'])
-            album_id = ''
+            album_id = getAlbumID(data['album'])
 
-            # check if album is already in database
-            cursor.execute(get_album,{
-                'artist' : artist_id,
-                'album' : data['album']
+            # join album and artist
+            cursor.execute(add_artist_album,{
+            'artist' : artist_id,
+            'album' : album_id
             })
-            result = cursor.fetchone()
-            if result==None:
-                # if not in database add album
-                cursor.execute(add_album,(data['album'],))
-                album_id = cursor.lastrowid
-                # increment counter
-                album_count += 1
-
-                # join album and artist
-                cursor.execute(add_artist_album,{
-                    'artist' : artist_id,
-                    'album' : album_id
-                })
-
-            else:
-                # if in database set album id
-                album_id = result[0]
-
 
             # add album into position list
             cursor.execute(add_to_list,{
