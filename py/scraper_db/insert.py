@@ -125,7 +125,7 @@ def insert(cnx,result):
             source_id = result[0]
 
         for data in data['data']:
-            artist_id = get_artist(data['artist'])
+            artist_id = getArtistID(data['artist'])
             album_id = getAlbumID(data['album'])
 
             # join album and artist
