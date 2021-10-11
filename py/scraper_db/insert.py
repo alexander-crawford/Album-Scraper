@@ -5,7 +5,7 @@ import config
 def insert(cnx,result,source_id):
     # Returns artist id for artist name given as argument value
     # if artist is not found in db a new entry is added and the id returned
-    def getArtistID(artist):
+    def getArtistID(cursor,artist):
 
         get_artist = (
             "SELECT id FROM artist "
@@ -38,7 +38,7 @@ def insert(cnx,result,source_id):
 
     # Returns album id for album name given as argument value
     # if album is not found in db a new entry is added and the id returned
-    def getAlbumID(artist_id,album_title):
+    def getAlbumID(cursor,artist_id,album_title):
 
         get_album = (
             "SELECT id FROM album "
@@ -77,7 +77,7 @@ def insert(cnx,result,source_id):
             return result[0]
 
     # Remove all entries from source_album table for the given source id
-    def resetSource(source_id):
+    def resetSource(cursor,source_id):
 
         reset_source = (
             "DELETE FROM source_album"
@@ -88,8 +88,8 @@ def insert(cnx,result,source_id):
 
     # Creates an entry in the source_album table joining the source and
     # album with the given id
-    def joinSourceAlbum(source_id,album_id):
-        
+    def joinSourceAlbum(cursor,source_id,album_id):
+
         add_source_album = (
             "INSERT INTO source_album"
             "VALUES (%(source)s,%(album)s)"
@@ -105,9 +105,8 @@ def insert(cnx,result,source_id):
     # print source
     print('\n',data['meta']['source'].upper())
 
-    resetSource(source_id)
-
     if data['meta']['status']==200:
+
 
         # create counters to be printed on script end
         artist_count = 0
@@ -116,10 +115,12 @@ def insert(cnx,result,source_id):
         # create cursor
         cursor = cnx.cursor()
 
+        resetSource(cursor,source_id)
+
         for data in data['data']:
-            artist_id = getArtistID(data['artist'])
-            album_id = getAlbumID(artist_id,data['album'])
-            joinSourceAlbum(album_id,source_id)
+            artist_id = getArtistID(cursor,data['artist'])
+            album_id = getAlbumID(cursor,artist_id,data['album'])
+            joinSourceAlbum(cursor,album_id,source_id)
 
         # commnit changes to db
         cnx.commit()
