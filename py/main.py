@@ -10,9 +10,9 @@ sources = scraper_db.getSources(cnx)
 
 for source in sources:
     # for each source scrape site
-    result = scraper.scrape(source['name'],source['url'],source['container_tag'], \
-    source['container_class'],source['artist_tag'],source['artist_class'], \
-    source['album_tag'],source['album_class'])
+    result = scraper.scrape(source['title'],source['url'], \
+    source['container_tag'],source['container_class'],source['artist_tag'], \
+    source['artist_class'],source['album_tag'],source['album_class'])
 
     # insert into db providing connection and results
     scraper_db.insert(cnx,result,source['id'])
