@@ -78,8 +78,13 @@ def insert(cnx,result,source_id):
 
     # Remove all entries from source_album table for the given source id
     def resetSource(source_id):
-        # TODO: complete function
-        pass
+        
+        reset_source = (
+            "DELETE FROM source_album"
+            "WHERE source_id = (%s)"
+        )
+
+        cursor.execute(reset_source,(source_id,))
 
     # Creates an entry in the source_album table joining the source and
     # album with the given id
