@@ -80,7 +80,7 @@ def insert(cnx,result,source_id):
     def resetSource(cursor,source_id):
 
         reset_source = (
-            "DELETE FROM source_album"
+            "DELETE FROM source_album "
             "WHERE source_id = (%s)"
         )
 
@@ -91,7 +91,7 @@ def insert(cnx,result,source_id):
     def joinSourceAlbum(cursor,source_id,album_id):
 
         add_source_album = (
-            "INSERT INTO source_album"
+            "INSERT INTO source_album "
             "VALUES (%(source)s,%(album)s)"
         )
 
