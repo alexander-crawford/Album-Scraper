@@ -15,8 +15,7 @@ for source in sources:
     source['album_tag'],source['album_class'])
 
     # insert into db providing connection and results
-    scraper_db.insert(cnx,result)
-    # print(result)
+    scraper_db.insert(cnx,result,source['id'])
 
 # get albums where image or year is missing
 for item in scraper_db.getDiscogsAlbums(cnx):

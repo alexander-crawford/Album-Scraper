@@ -2,7 +2,7 @@ import mysql.connector
 import json
 import config
 
-def insert(cnx,result):
+def insert(cnx,result,source_id):
     # Returns artist id for artist name given as argument value
     # if artist is not found in db a new entry is added and the id returned
     def getArtistID(artist):
@@ -76,10 +76,23 @@ def insert(cnx,result):
             # if in database return album id
             return result[0]
 
+    # Remove all entries from source_album table for the given source id
+    def resetSource(source_id):
+        # TODO: complete function
+        pass
+
+    # Creates an entry in the source_album table joining the source and
+    # album with the given id
+    def joinSourceAlbum(source_id,album_id):
+        # TODO: complete function
+        pass
+
     data = json.loads(result)
 
     # print source
     print('\n',data['meta']['source'].upper())
+
+    resetSource(source_id)
 
     if data['meta']['status']==200:
 
@@ -93,6 +106,7 @@ def insert(cnx,result):
         for data in data['data']:
             artist_id = getArtistID(data['artist'])
             album_id = getAlbumID(artist_id,data['album'])
+            joinSourceAlbum(album_id,source_id)
 
         # commnit changes to db
         cnx.commit()
