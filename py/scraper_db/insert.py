@@ -98,7 +98,7 @@ def insert(cnx,result):
 
         for data in data['data']:
             artist_id = getArtistID(data['artist'])
-            album_id = getAlbumID(data['album'])
+            album_id = getAlbumID(artist_id,data['album'])
 
             # join album and artist
             cursor.execute(add_artist_album,{
