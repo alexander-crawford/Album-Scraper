@@ -89,8 +89,16 @@ def insert(cnx,result,source_id):
     # Creates an entry in the source_album table joining the source and
     # album with the given id
     def joinSourceAlbum(source_id,album_id):
-        # TODO: complete function
-        pass
+        
+        add_source_album = (
+            "INSERT INTO source_album"
+            "VALUES (%(source)s,%(album)s)"
+        )
+
+        cursor.execute(add_source_album,{
+            'source' : source_id,
+            'album' : album_id
+        })
 
     data = json.loads(result)
 
