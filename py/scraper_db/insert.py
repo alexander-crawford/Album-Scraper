@@ -95,34 +95,6 @@ def insert(cnx,result):
             "(artist_id,album_id) "
             "VALUES (%(artist)s,%(album)s)"
         )
-        add_source = (
-            "INSERT INTO source "
-            "(title) "
-            "VALUES (%s)"
-        )
-        get_source = (
-            "SELECT id FROM source "
-            "WHERE title = (%s)"
-        )
-        add_to_list = (
-            "REPLACE INTO list "
-            "(position,source_id,album_id) "
-            "VALUES (%(position)s,%(source_id)s,%(album_id)s)"
-        )
-
-        source_id = ''
-        # check if source is already present in database
-        cursor.execute(get_source,(data['meta']['source'],))
-        result = cursor.fetchone()
-        if result==None:
-            # if source is not in database add source
-            cursor.execute(add_source,(data['meta']['source'],))
-            source_id = cursor.lastrowid
-            # increment counter
-            source_count += 1
-        else:
-            # if in database set source id
-            source_id = result[0]
 
         for data in data['data']:
             artist_id = getArtistID(data['artist'])
@@ -148,7 +120,6 @@ def insert(cnx,result):
         cursor.close()
 
         # print counters
-        print(source_count,"sources added")
         print(artist_count,"artists added")
         print(album_count,"albums added")
 
