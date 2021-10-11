@@ -90,29 +90,9 @@ def insert(cnx,result):
         # create cursor
         cursor = cnx.cursor()
 
-        add_artist_album = (
-            "INSERT INTO artist_album "
-            "(artist_id,album_id) "
-            "VALUES (%(artist)s,%(album)s)"
-        )
-
         for data in data['data']:
             artist_id = getArtistID(data['artist'])
             album_id = getAlbumID(artist_id,data['album'])
-
-            # join album and artist
-            cursor.execute(add_artist_album,{
-            'artist' : artist_id,
-            'album' : album_id
-            })
-
-            # add album into position list
-            cursor.execute(add_to_list,{
-            'position' : data['position'],
-            'source_id' : source_id,
-            'album_id' : album_id
-            })
-
 
         # commnit changes to db
         cnx.commit()
