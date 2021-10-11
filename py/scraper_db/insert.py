@@ -15,7 +15,7 @@ def insert(cnx,result,source_id):
         add_artist = (
             "INSERT INTO artist "
             "(name) "
-            "VALUES (%s)"
+            "VALUE (%s)"
         )
 
         # check if artist is already in database
@@ -78,7 +78,7 @@ def insert(cnx,result,source_id):
 
     # Remove all entries from source_album table for the given source id
     def resetSource(source_id):
-        
+
         reset_source = (
             "DELETE FROM source_album"
             "WHERE source_id = (%s)"
