@@ -1,0 +1,1 @@
+INSERT INTO source (title,url,container_tag,container_class,artist_tag,artist_class,album_tag,album_class) VALUES ('billboard','https://www.billboard.com/charts/top-album-sales','div','chart-list-item','div','chart-list-item__artist','span','chart-list-item__title-text')
