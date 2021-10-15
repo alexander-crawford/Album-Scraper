@@ -3,6 +3,28 @@ import json
 import config
 
 def insert(cnx,result,source_id):
+
+    # Keep track of how many artist and albums have been added to the database
+    class Counter:
+        """Keeps count of how many artists and albums
+        have been added to the database."""
+
+        def __init__(self):
+            self.album_count = 0
+            self.artist_count = 0
+
+        def getAlbumCounter(self):
+            return self.album_count
+
+        def incrementAlbumCounter(self):
+            self.album_count += 1
+
+        def getArtistCounter(self):
+            return self.artist_count
+
+        def incrementArtistCounter(self):
+            self.artist_count += 1
+
     # Returns artist id for artist name given as argument value
     # if artist is not found in db a new entry is added and the id returned
     def getArtistID(cursor,artist):
@@ -27,7 +49,7 @@ def insert(cnx,result,source_id):
             cursor.execute(add_artist,(data['artist'],))
 
             # increment counter
-            artist_count += 1
+            counter.incrementArtistCounter()
 
             # return id of new row
             return cursor.lastrowid
@@ -66,7 +88,7 @@ def insert(cnx,result,source_id):
             })
 
             # increment counter
-            album_count += 1
+            counter.incrementAlbumCounter()
 
             # return album id
             return cursor.lastrowid
@@ -107,10 +129,8 @@ def insert(cnx,result,source_id):
 
     if data['meta']['status']==200:
 
-
-        # create counters to be printed on script end
-        artist_count = 0
-        album_count = 0
+        # create counter
+        counter = Counter()
 
         # create cursor
         cursor = cnx.cursor()
@@ -128,8 +148,8 @@ def insert(cnx,result,source_id):
         cursor.close()
 
         # print counters
-        print(artist_count,"artists added")
-        print(album_count,"albums added")
+        print(counter.getArtistCounter(),"artists added")
+        print(counter.getAlbumCounter(),"albums added")
 
     else:
         print("** fail **")
