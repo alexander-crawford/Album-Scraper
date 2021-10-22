@@ -2,6 +2,7 @@ def getDiscogsAlbums(cnx):
     # create cursor
     cursor = cnx.cursor()
 
+    # TODO: rewrite statement after schema change
     # create select statement
     get_no_image = (
         "SELECT album.id, "
