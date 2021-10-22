@@ -140,7 +140,7 @@ def insert(cnx,result,source_id):
         for data in data['data']:
             artist_id = getArtistID(cursor,data['artist'])
             album_id = getAlbumID(cursor,artist_id,data['album'])
-            joinSourceAlbum(cursor,album_id,source_id)
+            joinSourceAlbum(cursor,source_id,album_id)
 
         # commnit changes to db
         cnx.commit()
