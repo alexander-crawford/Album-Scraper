@@ -42,20 +42,18 @@
         $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 
         $result = $mysqli->query("
-        SELECT ROW_NUMBER() OVER (ORDER BY source.title,list.position) row_num,
-        source.title AS source,
+        SELECT ROW_NUMBER() OVER (ORDER BY count(source_album.album_id),
+        album.year DESC,artist.name ASC, album.title ASC) position,
         artist.id AS artist_id,
         album.id AS album_id,
-        IFNULL(CONCAT('./img/',album.image_lrg),'./img/blank.svg') AS image,
-        list.position AS position,
+        IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
         album.title AS title,
         artist.name AS artist,
-        album.year AS year FROM list
-        INNER JOIN source ON list.source_id = source.id
-        INNER JOIN album ON list.album_id = album.id
-        INNER JOIN artist_album ON album.id = artist_album.album_id
-        INNER JOIN artist ON artist_album.artist_id = artist.id
-        ORDER BY source.title,list.position
+        album.year AS year
+        FROM album
+        LEFT JOIN source_album ON album.id = source_album.album_id
+        INNER JOIN artist ON album.artist_id = artist.id
+        GROUP BY album.id
         LIMIT 8;
         ");
 
@@ -92,21 +90,20 @@
         $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 
         $statement = $mysqli->prepare("
-        SELECT ROW_NUMBER() OVER (ORDER BY source.title,list.position) row_num,
-        source.title AS source,
+        SELECT ROW_NUMBER() OVER (ORDER BY position,year desc) row_num,
         artist.id AS artist_id,
         album.id AS album_id,
-        IFNULL(CONCAT('./img/',album.image_lrg),'./img/blank.svg') AS image,
-        list.position AS position,
+        IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
+        count(source_album.album_id) as position,
         album.title AS title,
         artist.name AS artist,
-        album.year AS year FROM list
-        INNER JOIN source ON list.source_id = source.id
-        INNER JOIN album ON list.album_id = album.id
-        INNER JOIN artist_album ON album.id = artist_album.album_id
-        INNER JOIN artist ON artist_album.artist_id = artist.id
-        ORDER BY source.title,list.position
-        LIMIT 8
+        album.year AS year
+        FROM album
+        LEFT JOIN source_album ON album.id = source_album.album_id
+        INNER JOIN artist ON album.artist_id = artist.id
+        GROUP BY album.id
+        ORDER BY position,year DESC
+        LIMIT 8;
         OFFSET ?;
         ");
 
