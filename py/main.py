@@ -19,15 +19,16 @@ for source in sources:
 
 # get albums where image or year is missing
 for item in scraper_db.getDiscogsAlbums(cnx):
+    print(item['artist'],item['album'])
 
-    result = api.getAlbumInfo(item[1] + " " + item[2])
+    result = api.getAlbumInfo(item['artist'] + " " + item['album'])
 
     if result!=None:
 
         # addYear(cnx,year,album_id)
-        scraper_db.addYear(cnx,result['album_year'],item[0])
+        scraper_db.addYear(cnx,result['album_year'],item['id'])
         # addImage(cnx,url,album_id)
-        scraper_db.addImage(cnx,result['album_cover_url'],item[0])
+        scraper_db.addImage(cnx,result['album_cover_url'],item['id'])
 
     # discogsApiCalled(cnx,album_id)
     scraper_db.discogsApiCalled(cnx,item[0])
