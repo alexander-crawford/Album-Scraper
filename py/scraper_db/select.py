@@ -1,21 +1,17 @@
 def getDiscogsAlbums(cnx):
     # create cursor
-    cursor = cnx.cursor()
+    cursor = cnx.cursor(dictionary=True)
 
-    # TODO: rewrite statement after schema change
     # create select statement
     get_no_image = (
         "SELECT album.id, "
-        "album.title, "
-        "artist.name, "
-        "album.year, "
-        "album.image_lrg "
+        "album.title as album, "
+        "artist.name as artist "
         "FROM album "
-        "INNER JOIN artist_album ON album.id = artist_album.album_id "
-        "INNER JOIN artist ON artist_album.artist_id = artist.id "
-        "WHERE (album.image_lrg IS NULL OR "
-        "album.year IS NULL) "
-        "AND album.discogs_api = 0"
+        "INNER JOIN artist ON album.artist_id = artist.id "
+        "LEFT JOIN album_api ON album.id = album_api.album_id "
+        "WHERE (album.year IS NULL OR album.image IS NULL) "
+        "AND (album_api.api_id <> 1 or album_api.api_id IS NULL)"
     )
 
     # run statement
