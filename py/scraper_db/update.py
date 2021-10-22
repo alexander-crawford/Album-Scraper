@@ -61,7 +61,7 @@ def addImage(cnx,url,album_id):
         # insert image location into db
         add_image = (
             "UPDATE album "
-            "SET image_lrg = %(image)s "
+            "SET image = %(image)s "
             "WHERE id = %(id)s"
         )
 
