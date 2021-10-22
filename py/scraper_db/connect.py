@@ -27,7 +27,7 @@ def connect():
         "title varchar(256) NOT NULL,"
         "year YEAR,"
         "image varchar(256),"
-        "PRIMARY KEY (id,artist_id),"
+        "PRIMARY KEY (id),"
         "UNIQUE KEY (image),"
         "FOREIGN KEY (artist_id)"
         "REFERENCES artist (id)"
