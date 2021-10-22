@@ -154,5 +154,21 @@ def insert(cnx,result,source_id):
     else:
         print("** fail **")
 
+def discogsApiCalled(cnx,album_id):
+    add_discogs_call = (
+        "INSERT INTO album_api "
+        "VALUES (%(album)s,%(api)s)"
+    )
+
+    cursor = cnx.cursor()
+
+    cursor.execute(add_discogs_call,{
+        'album' : album_id,
+        'api' : 1
+    })
+
+    cnx.commit()
+    cursor.close()
+
 if __name__ == '__main__':
     insert()
