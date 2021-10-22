@@ -19,7 +19,6 @@ for source in sources:
 
 # get albums where image or year is missing
 for item in scraper_db.getDiscogsAlbums(cnx):
-    print(item['artist'],item['album'])
 
     result = api.getAlbumInfo(item['artist'] + " " + item['album'])
 
@@ -31,7 +30,7 @@ for item in scraper_db.getDiscogsAlbums(cnx):
         scraper_db.addImage(cnx,result['album_cover_url'],item['id'])
 
     # discogsApiCalled(cnx,album_id)
-    scraper_db.discogsApiCalled(cnx,item[0])
+    scraper_db.discogsApiCalled(cnx,item['id'])
 
 # disconnect from scraper_db
 cnx.close()
