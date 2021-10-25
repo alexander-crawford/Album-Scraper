@@ -11,29 +11,6 @@
     <link rel="stylesheet" href="./css/styles.css">
   </head>
   <body>
-    <?php
-      function printAlbum($artist_id,$album_id,$image,$position,$title,$artist,$year)
-      {
-        echo "<div class=\"grid-item\" onclick=\"single(this)\" ondblclick=\"double(this)\" onmousedown=\"press(this,event)\" onmouseup=\"press(this,event)\">";
-        echo "<span class=\"artist_id\" hidden>" . $artist_id . "</span>";
-        echo "<span class=\"album_id\" hidden>" . $album_id . "</span>";
-
-        if ($image == './img/blank.svg') {
-          echo "<img class=\"img--off\" src=\"" . $image . "\"alt=\"\">";
-          echo "<div class=\"text-container text-container-on\">";
-        } else {
-          echo "<img src=\"" . $image . "\"alt=\"\">";
-          echo "<div class=\"text-container text-container--off\">";
-        }
-
-        echo "<p class=\"position\">" . $position . "</p>";
-        echo "<p class=\"title\">" . $title . "</p>";
-        echo "<p class=\"artist\">" . $artist . "</p>";
-        echo "<p class=\"year\">" . $year . "</p>";
-        echo "</div>"; // grid-item
-        echo "</div>"; // text-container
-      }
-    ?>
     <div class="grid">
     <?php
       $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
@@ -97,11 +74,19 @@
         $mysqli->close();
       }
 
-
-      foreach ($result as $row) {
-        printAlbum($row['artist_id'],$row['album_id'],$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
-      }
     ?>
+    <?php foreach ($result as $row): ?>
+      <div class="grid-item" onclick="single(this)" ondblclick="double(this)"
+      onmousedown="press(this,event)" onmouseup="press(this,event)">
+        <img src="<?php echo $row['image'] ?>" alt="">
+        <div class="text-container text-container--off">
+          <p class="position"><?php echo $row['position'] ?></p>
+          <p class="title"><?php echo $row['title'] ?></p>
+          <p class="artist"><?php echo $row['artist'] ?></p>
+          <p class="year"><?php echo $row['year'] ?></p>
+        </div>
+      </div>
+    <?php endforeach; ?>
     </div>
   </body>
 </html>
