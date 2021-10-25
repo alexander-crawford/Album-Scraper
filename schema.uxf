@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1062</x>
-      <y>369</y>
+      <x>936</x>
+      <y>504</y>
       <w>189</w>
       <h>63</h>
     </coordinates>
@@ -19,8 +19,8 @@ name: varchar(256)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>711</x>
-      <y>351</y>
+      <x>585</x>
+      <y>486</y>
       <w>279</w>
       <h>117</h>
     </coordinates>
@@ -40,8 +40,8 @@ image: varchar(256)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>126</x>
-      <y>459</y>
+      <x>0</x>
+      <y>594</y>
       <w>198</w>
       <h>198</h>
     </coordinates>
@@ -69,8 +69,8 @@ album_class: varchar(256) </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>351</x>
-      <y>468</y>
+      <x>225</x>
+      <y>603</y>
       <w>315</w>
       <h>63</h>
     </coordinates>
@@ -84,8 +84,8 @@ album_id: smallint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</pane
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>315</x>
-      <y>477</y>
+      <x>189</x>
+      <y>612</y>
       <w>54</w>
       <h>36</h>
     </coordinates>
@@ -95,8 +95,8 @@ album_id: smallint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</pane
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>657</x>
-      <y>378</y>
+      <x>531</x>
+      <y>513</y>
       <w>72</w>
       <h>162</h>
     </coordinates>
@@ -106,8 +106,8 @@ album_id: smallint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</pane
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>981</x>
-      <y>378</y>
+      <x>855</x>
+      <y>513</y>
       <w>99</w>
       <h>36</h>
     </coordinates>
@@ -117,26 +117,24 @@ album_id: smallint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</pane
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1368</x>
-      <y>180</y>
+      <x>1242</x>
+      <y>315</y>
       <w>162</w>
-      <h>81</h>
+      <h>63</h>
     </coordinates>
     <panel_attributes>api
 --
 id: tinyint &lt;&lt;Primary Key&gt;&gt;
 --
 name: varchar(256)
---
-called: boolean
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1026</x>
-      <y>162</y>
+      <x>900</x>
+      <y>297</y>
       <w>315</w>
       <h>63</h>
     </coordinates>
@@ -150,8 +148,8 @@ api_id: tinyint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_a
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>981</x>
-      <y>180</y>
+      <x>855</x>
+      <y>315</y>
       <w>63</w>
       <h>225</h>
     </coordinates>
@@ -161,8 +159,8 @@ api_id: tinyint &lt;&lt;Foreign Key&gt;&gt; &lt;&lt;Primary Key&gt;&gt;</panel_a
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1332</x>
-      <y>198</y>
+      <x>1206</x>
+      <y>333</y>
       <w>54</w>
       <h>36</h>
     </coordinates>
