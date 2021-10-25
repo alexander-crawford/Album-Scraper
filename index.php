@@ -12,12 +12,11 @@
   </head>
   <body>
     <?php
-      function printAlbum($artist_id,$album_id,$row_num,$image,$position,$title,$artist,$year)
+      function printAlbum($artist_id,$album_id,$image,$position,$title,$artist,$year)
       {
         echo "<div class=\"grid-item\" onclick=\"single(this)\" ondblclick=\"double(this)\" onmousedown=\"press(this,event)\" onmouseup=\"press(this,event)\">";
         echo "<span class=\"artist_id\" hidden>" . $artist_id . "</span>";
         echo "<span class=\"album_id\" hidden>" . $album_id . "</span>";
-        echo "<span class=\"row_num\" hidden>" . $row_num . "</span>";
 
         if ($image == './img/blank.svg') {
           echo "<img class=\"img--off\" src=\"" . $image . "\"alt=\"\">";
@@ -100,12 +99,7 @@
 
 
       foreach ($result as $row) {
-        if (is_null($row['row_num'])) {
-          $row_num = $_GET['row_num'];
-        }else {
-          $row_num = $row['row_num'];
-        }
-        printAlbum($row['artist_id'],$row['album_id'],$row_num,$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
+        printAlbum($row['artist_id'],$row['album_id'],$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
       }
     ?>
     </div>
