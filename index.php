@@ -12,7 +12,7 @@
   </head>
   <body>
     <?php
-      function printAlbum($artist_id,$album_id,$row_num,$image,$position,$title,$artist,$year,$source)
+      function printAlbum($artist_id,$album_id,$row_num,$image,$position,$title,$artist,$year)
       {
         echo "<div class=\"grid-item\" onclick=\"single(this)\" ondblclick=\"double(this)\" onmousedown=\"press(this,event)\" onmouseup=\"press(this,event)\">";
         echo "<span class=\"artist_id\" hidden>" . $artist_id . "</span>";
@@ -31,7 +31,6 @@
         echo "<p class=\"title\">" . $title . "</p>";
         echo "<p class=\"artist\">" . $artist . "</p>";
         echo "<p class=\"year\">" . $year . "</p>";
-        echo "<p class=\"year\">" . $source . "</p>";
         echo "</div>"; // grid-item
         echo "</div>"; // text-container
       }
@@ -106,7 +105,7 @@
         }else {
           $row_num = $row['row_num'];
         }
-        printAlbum($row['artist_id'],$row['album_id'],$row_num,$row['image'],$row['position'],$row['title'],$row['artist'],$row['year'],$row['source']);
+        printAlbum($row['artist_id'],$row['album_id'],$row_num,$row['image'],$row['position'],$row['title'],$row['artist'],$row['year']);
       }
     ?>
     </div>
