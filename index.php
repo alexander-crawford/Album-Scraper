@@ -38,10 +38,9 @@
     ?>
     <div class="grid">
     <?php
-      if (empty($_SERVER['QUERY_STRING'])) {
-        $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
+      $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 
-        $result = $mysqli->query("
+      $statement = $mysqli->prepare("
         SELECT ROW_NUMBER() OVER (ORDER BY count(source_album.album_id),
         album.year DESC,artist.name ASC, album.title ASC) position,
         artist.id AS artist_id,
@@ -54,11 +53,25 @@
         LEFT JOIN source_album ON album.id = source_album.album_id
         INNER JOIN artist ON album.artist_id = artist.id
         GROUP BY album.id
-        LIMIT 8;
-        ");
+        LIMIT 8
+        OFFSET ?;
+      ");
 
-        $mysqli->close();
+      $page = 0;
+
+      if (!empty($_GET['page']) and filter_var($_GET['page'],FILTER_VALIDATE_INT)) {
+
+        $page = ($_GET['page'] * 8) - 8;
+
       }
+
+      $statement->bind_param("i",$page);
+
+      $statement->execute();
+
+      $result = $statement->get_result();
+
+      $mysqli->close();
 
       if (!empty($_GET['artist_id']) and !empty($_GET['album_id']) and !empty($_GET['row_num'])) {
         $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
@@ -86,40 +99,6 @@
         $mysqli->close();
       }
 
-      if (!empty($_GET['page'])) {
-        $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
-
-        $statement = $mysqli->prepare("
-        SELECT ROW_NUMBER() OVER (ORDER BY position,year desc) row_num,
-        artist.id AS artist_id,
-        album.id AS album_id,
-        IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
-        count(source_album.album_id) as position,
-        album.title AS title,
-        artist.name AS artist,
-        album.year AS year
-        FROM album
-        LEFT JOIN source_album ON album.id = source_album.album_id
-        INNER JOIN artist ON album.artist_id = artist.id
-        GROUP BY album.id
-        ORDER BY position,year DESC
-        LIMIT 8;
-        OFFSET ?;
-        ");
-
-        $page = ($_GET['page'] * 8) - 8;
-
-        if (filter_var($_GET['page'],FILTER_VALIDATE_INT)) {
-          $statement->bind_param("i",$page);
-
-          $statement->execute();
-
-          $result = $statement->get_result();
-
-        }
-
-        $mysqli->close();
-      }
 
       foreach ($result as $row) {
         if (is_null($row['row_num'])) {
