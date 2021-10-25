@@ -68,7 +68,6 @@ def connect():
         "CREATE TABLE IF NOT EXISTS api ("
         "id tinyint UNSIGNED NOT NULL AUTO_INCREMENT,"
         "name varchar(256) NOT NULL,"
-        "called boolean NOT NULL DEFAULT false,"
         "PRIMARY KEY (id),"
         "UNIQUE KEY (name)"
         ") ENGINE=InnoDB"
