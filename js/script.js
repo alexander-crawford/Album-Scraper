@@ -8,9 +8,6 @@ $('.grid').isotope({
     'album_position': '.position parseInt'
   }
 });
-// imagesLoaded( grid ).on( 'progress', function() {
-  // iso.layout();
-// });
 const iso = $('.grid').data('isotope');
 $('.grid').infiniteScroll({
   path: '/?page={{#}}',
