@@ -1,5 +1,4 @@
-var grid = document.querySelector('.grid');
-var iso = new Isotope( grid, {
+$('.grid').isotope({
   itemSelector: '.grid-item',
   columnWidth: '.grid-item',
   percentPosition:true,
@@ -9,10 +8,11 @@ var iso = new Isotope( grid, {
     'album_position': '.position parseInt'
   }
 });
-imagesLoaded( grid ).on( 'progress', function() {
-  iso.layout();
-});
-let infScroll = new InfiniteScroll( grid, {
+// imagesLoaded( grid ).on( 'progress', function() {
+  // iso.layout();
+// });
+const iso = $('.grid').data('isotope');
+$('.grid').infiniteScroll({
   path: '/?page={{#}}',
   append: '.grid-item',
   outlayer: iso,
