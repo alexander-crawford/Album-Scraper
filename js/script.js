@@ -4,9 +4,9 @@ var iso = new Isotope( grid, {
   columnWidth: '.grid-item',
   percentPosition:true,
   stamp: '.stamp',
-  sortBy:'row_number',
+  sortBy:'album_position',
   getSortData: {
-    'row_number': '.row_num parseInt'
+    'album_position': '.position parseInt'
   }
 });
 imagesLoaded( grid ).on( 'progress', function() {
