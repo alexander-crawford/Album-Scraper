@@ -16,6 +16,7 @@ $('.grid').infiniteScroll({
   scrollThreshold: 500,
   prefill: true
 });
+// TODO: rewrite double press / click function using jquery
 function double(data) {
   artist_id = data.getElementsByClassName('artist_id')[0].innerText;
   album_id = data.getElementsByClassName('album_id')[0].innerText;
@@ -30,6 +31,7 @@ function double(data) {
   }
   request.send();
 };
+// TODO: rewrite single click / press function using jquery
 function single(data) {
   let text_container = data.getElementsByClassName('text-container--off')[0];
   let image = data.getElementsByTagName('img')[0];
