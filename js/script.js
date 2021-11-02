@@ -43,31 +43,3 @@ function single(data) {
   image.classList.add('img--off');
   setTimeout(off,2000);
 };
-
-var mouse_down;
-var mouse_up;
-var elapsed;
-
-function press(data,event) {
-  const date = new Date();
-
-  function long(data) {
-    const url = 'https://duckduckgo.com/?q=';
-    let artist = data.getElementsByClassName('artist')[0].innerText;
-    let album = data.getElementsByClassName('title')[0].innerText;
-    let link = url + artist + " " + album;
-    window.open(link,'_blank')
-  };
-
-  if (event.type == "mousedown") {
-    mouse_down = date.getTime();
-  }
-
-  if (event.type == "mouseup") {
-    mouse_up = date.getTime();
-    elapsed = date.getTime() - mouse_down;
-    if (elapsed >= 500) {
-      long(data);
-    }
-  }
-};

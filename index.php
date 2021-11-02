@@ -76,8 +76,7 @@
 
     ?>
     <?php foreach ($result as $row): ?>
-      <div class="grid-item" onclick="single(this)" ondblclick="double(this)"
-      onmousedown="press(this,event)" onmouseup="press(this,event)">
+      <div class="grid-item" onclick="single(this)" ondblclick="double(this)">
         <img src="<?php echo $row['image'] ?>" alt="">
         <div class="text-container text-container--off">
           <p class="position"><?php echo $row['position'] ?></p>
