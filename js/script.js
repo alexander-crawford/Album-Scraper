@@ -31,15 +31,14 @@ function double(data) {
   }
   request.send();
 };
-// TODO: rewrite single click / press function using jquery
-function single(data) {
-  let text_container = data.getElementsByClassName('text-container--off')[0];
-  let image = data.getElementsByTagName('img')[0];
+$('.grid-item').click(function () {
+  let text_container = $(this).find('.text-container--off');
+  let image = $(this).find('img');
   function off() {
-    text_container.classList.remove('text-container--on');
-    image.classList.remove('img--off');
+    text_container.removeClass('text-container--on');
+    image.removeClass('img--off');
   }
-  text_container.classList.add('text-container--on');
-  image.classList.add('img--off');
+  text_container.addClass('text-container--on');
+  image.addClass('img--off');
   setTimeout(off,2000);
-};
+});
