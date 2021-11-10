@@ -31,6 +31,27 @@ function double(data) {
   }
   request.send();
 };
+// TODO: function is not called for albums loaded via infinite scroll
+$('.grid-item').dblclick(function () {
+  const url = 'http://localhost:8000/'
+  let artist_id = $(this).find('.artist_id').text();
+  let album_id = $(this).find('.album_id').text();
+  let position = $(this).find('.position').text();
+  $.ajax({
+    url : url,
+    data : {
+      artist_id : artist_id,
+      album_id : album_id,
+      position : position
+    },
+    success : function (data) {
+      console.log(data);
+      // TODO: add albums to isotope layout
+      // iso.insert()
+    }
+  });
+})
+// TODO: function is not called for albums loaded via infinite scroll
 $('.grid-item').click(function () {
   let text_container = $(this).find('.text-container--off');
   let image = $(this).find('img');

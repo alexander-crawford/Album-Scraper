@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <?php // TODO: head tag is returned with ajax requests ?>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,50 +16,17 @@
     <?php
       $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 
-      $statement = $mysqli->prepare("
-        SELECT ROW_NUMBER() OVER (ORDER BY count(source_album.album_id),
-        album.year DESC,artist.name ASC, album.title ASC) position,
-        artist.id AS artist_id,
-        album.id AS album_id,
-        IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
-        album.title AS title,
-        artist.name AS artist,
-        album.year AS year
-        FROM album
-        LEFT JOIN source_album ON album.id = source_album.album_id
-        INNER JOIN artist ON album.artist_id = artist.id
-        GROUP BY album.id
-        LIMIT 8
-        OFFSET ?;
-      ");
-
-      $page = 0;
-
-      if (!empty($_GET['page']) and filter_var($_GET['page'],FILTER_VALIDATE_INT)) {
-
-        $page = ($_GET['page'] * 8) - 8;
-
-      }
-
-      $statement->bind_param("i",$page);
-
-      $statement->execute();
-
-      $result = $statement->get_result();
-
-      $mysqli->close();
-
+      // TODO: the following  inside the if statement is never called
       if (!empty($_GET['artist_id']) and !empty($_GET['album_id']) and !empty($_GET['row_num'])) {
-        $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
-
         $statement = $mysqli->prepare("
-        SELECT IFNULL(CONCAT('./img/',album.image_lrg),'./img/blank.svg') AS image,
-        album.title AS title,
-        artist.name AS artist,
-        album.year AS year
-        FROM artist INNER JOIN artist_album ON artist.id = artist_album.artist_id
-        INNER JOIN album ON artist_album.album_id = album.id
-        WHERE artist.id = (?) AND album.id <> (?);
+          SELECT IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
+          album.title AS title,
+          artist.name AS artist,
+          album.year AS year
+          FROM album
+          INNER JOIN artist ON album.artist_id = artist.id
+          WHERE artist.id = (?)
+          AND album.id <> (?);
         ");
 
         $artist_id = $_GET["artist_id"];
@@ -72,6 +40,39 @@
         $result = $statement->get_result();
 
         $mysqli->close();
+      }else{
+        $statement = $mysqli->prepare("
+          SELECT ROW_NUMBER() OVER (ORDER BY count(source_album.album_id),
+          album.year DESC,artist.name ASC, album.title ASC) position,
+          artist.id AS artist_id,
+          album.id AS album_id,
+          IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
+          album.title AS title,
+          artist.name AS artist,
+          album.year AS year
+          FROM album
+          LEFT JOIN source_album ON album.id = source_album.album_id
+          INNER JOIN artist ON album.artist_id = artist.id
+          GROUP BY album.id
+          LIMIT 8
+          OFFSET ?;
+        ");
+
+        $page = 0;
+
+        if (!empty($_GET['page']) and filter_var($_GET['page'],FILTER_VALIDATE_INT)) {
+
+          $page = ($_GET['page'] * 8) - 8;
+
+        }
+
+        $statement->bind_param("i",$page);
+
+        $statement->execute();
+
+        $result = $statement->get_result();
+
+        $mysqli->close();
       }
 
     ?>
@@ -79,6 +80,8 @@
       <div class="grid-item">
         <img src="<?php echo $row['image'] ?>" alt="">
         <div class="text-container text-container--off">
+          <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
+          <span class="album_id" hidden><?php echo $row['album_id'] ?></span>
           <p class="position"><?php echo $row['position'] ?></p>
           <p class="title"><?php echo $row['title'] ?></p>
           <p class="artist"><?php echo $row['artist'] ?></p>
