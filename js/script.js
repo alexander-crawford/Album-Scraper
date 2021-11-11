@@ -50,11 +50,10 @@ $('.grid-item').dblclick(function () {
       // iso.insert()
     }
   });
-})
-// TODO: function is not called for albums loaded via infinite scroll
-$('.grid-item').click(function () {
-  let text_container = $(this).find('.text-container--off');
-  let image = $(this).find('img');
+});
+function single(data) {
+  let text_container = $(data).find('.text-container--off');
+  let image = $(data).find('img');
   function off() {
     text_container.removeClass('text-container--on');
     image.removeClass('img--off');
@@ -62,4 +61,4 @@ $('.grid-item').click(function () {
   text_container.addClass('text-container--on');
   image.addClass('img--off');
   setTimeout(off,2000);
-});
+};
