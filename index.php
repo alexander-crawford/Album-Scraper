@@ -77,7 +77,7 @@
 
     ?>
     <?php foreach ($result as $row): ?>
-      <div class="grid-item" onclick="single(this)">
+      <div class="grid-item" onclick="single(this)" ondblclick="double(this)">
         <img src="<?php echo $row['image'] ?>" alt="">
         <div class="text-container text-container--off">
           <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
