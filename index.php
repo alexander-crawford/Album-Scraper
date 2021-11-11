@@ -10,7 +10,7 @@
 
       if (!empty($_GET['artist_id']) and !empty($_GET['album_id']) and !empty($_GET['position'])) {
         $statement = $mysqli->prepare("
-          SELECT IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
+          SELECT IFNULL(CONCAT('./img/',album.image),'./blank.svg') AS image,
           album.title AS title,
           artist.name AS artist,
           album.year AS year
@@ -37,7 +37,7 @@
           album.year DESC,artist.name ASC, album.title ASC) position,
           artist.id AS artist_id,
           album.id AS album_id,
-          IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
+          IFNULL(CONCAT('./img/',album.image),'./blank.svg') AS image,
           album.title AS title,
           artist.name AS artist,
           album.year AS year
