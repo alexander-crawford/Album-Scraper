@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<?php if (count($_GET) == 0): ?>
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
   <?php require 'head.php'; ?>
   <body>
     <div class="grid">
+<?php endif; ?>
     <?php
       $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 
-      // TODO: the following  inside the if statement is never called
-      if (!empty($_GET['artist_id']) and !empty($_GET['album_id']) and !empty($_GET['row_num'])) {
+      if (!empty($_GET['artist_id']) and !empty($_GET['album_id']) and !empty($_GET['position'])) {
         $statement = $mysqli->prepare("
           SELECT IFNULL(CONCAT('./img/',album.image),'./img/blank.svg') AS image,
           album.title AS title,
@@ -79,6 +80,8 @@
         </div>
       </div>
     <?php endforeach; ?>
+<?php if (count($_GET) == 0): ?>
     </div>
   </body>
 </html>
+<?php endif; ?>
