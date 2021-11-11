@@ -68,9 +68,15 @@
 
     ?>
     <?php foreach ($result as $row): ?>
-      <div class="grid-item" onclick="single(this)" ondblclick="double(this)">
-        <img src="<?php echo $row['image'] ?>" alt="">
-        <div class="text-container text-container--off">
+          <?php if ($row['image'] == './blank.svg'): ?>
+            <div class="grid-item" ondblclick="double(this)">
+            <img class="img--off" src="<?php echo $row['image'] ?>" alt="">
+            <div class="text-container text-container--on">
+          <?php else: ?>
+            <div class="grid-item" onclick="single(this)" ondblclick="double(this)">
+            <img src="<?php echo $row['image'] ?>" alt="">
+            <div class="text-container text-container--off">
+          <?php endif; ?>
           <span class="artist_id" hidden><?php echo $row['artist_id'] ?></span>
           <span class="album_id" hidden><?php echo $row['album_id'] ?></span>
           <?php if (empty($_GET['position'])): ?>
