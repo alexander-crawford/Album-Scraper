@@ -29,8 +29,7 @@ function double(data) {
       position : position
     },
     success : function (data) {
-      // TODO: add albums to isotope layout
-      // iso.insert(this.responseXML.body.children)
+      iso.insert($(data).siblings())
     }
   });
 };
