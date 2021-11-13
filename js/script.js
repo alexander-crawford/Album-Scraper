@@ -1,4 +1,5 @@
-$('.grid').isotope({
+const Grid =  $('.grid');
+Grid.isotope({
   itemSelector: '.grid-item',
   columnWidth: '.grid-item',
   percentPosition:true,
@@ -8,13 +9,16 @@ $('.grid').isotope({
     'album_position': '.position parseInt'
   }
 });
-const iso = $('.grid').data('isotope');
-$('.grid').infiniteScroll({
+const Iso = Grid.data('isotope');
+Grid.infiniteScroll({
   path: '/?page={{#}}',
   append: '.grid-item',
-  outlayer: iso,
+  outlayer: Iso,
   scrollThreshold: 500,
   prefill: true
+});
+Grid.on('append.infiniteScroll',function() {
+  Grid.isotope();
 });
 function double(data) {
   const url = 'http://localhost:8000/'
