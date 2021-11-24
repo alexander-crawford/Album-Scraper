@@ -33,7 +33,7 @@ function double(data) {
       position : position
     },
     success : function (data) {
-      iso.insert($(data).siblings())
+      Iso.insert($(data).siblings())
     }
   });
 };
