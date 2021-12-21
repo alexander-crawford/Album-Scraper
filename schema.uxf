@@ -22,7 +22,7 @@ name: varchar(256)</panel_attributes>
       <x>585</x>
       <y>486</y>
       <w>279</w>
-      <h>117</h>
+      <h>135</h>
     </coordinates>
     <panel_attributes>album
 --
@@ -34,7 +34,9 @@ title: varchar(256)
 --
 year: year
 --
-image: varchar(256)</panel_attributes>
+image: varchar(256)
+--
+resized: boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
