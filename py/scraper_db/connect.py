@@ -27,6 +27,7 @@ def connect():
         "title varchar(256) NOT NULL,"
         "year YEAR,"
         "image varchar(256),"
+        "resized BOOLEAN DEFAULT FALSE,"
         "PRIMARY KEY (id),"
         "UNIQUE KEY (image),"
         "FOREIGN KEY (artist_id)"
