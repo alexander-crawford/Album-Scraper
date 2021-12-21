@@ -40,3 +40,19 @@ def getSources(cnx):
 
     # return result
     return result
+
+def getLargeImages(cnx):
+    # create cursor
+    cursor = cnx.cursor(dictionary=True)
+
+    # create select statement
+    get_large_images = (
+        "SELECT id,image FROM album WHERE resized IS FALSE"
+    )
+
+    # run statement
+    cursor.execute(get_large_images)
+    result = cursor.fetchall()
+
+    # return result
+    return result
