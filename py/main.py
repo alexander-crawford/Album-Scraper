@@ -32,5 +32,11 @@ for item in scraper_db.getDiscogsAlbums(cnx):
     # discogsApiCalled(cnx,album_id)
     scraper_db.discogsApiCalled(cnx,item['id'])
 
+# get images that need to be resized
+for item in scraper_db.getLargeImages(cnx):
+    # TODO: for each image create then call resize function
+    # TODO: uncomment below when function is completed 
+    # scraper_db.setImageResizedTrue(cnx,item['id'])
+
 # disconnect from scraper_db
 cnx.close()

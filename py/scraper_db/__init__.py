@@ -5,4 +5,5 @@ from .select import getSources
 from .select import getLargeImages
 from .update import addYear
 from .update import addImage
+from .update import setImageResizedTrue
 from .insert import discogsApiCalled

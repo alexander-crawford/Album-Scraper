@@ -80,3 +80,21 @@ def addImage(cnx,url,album_id):
         else:
             print("id",album_id,"added cover")
             return True
+
+def setImageResizedTrue(cnx,album_id):
+    # create sql statement
+    image_resized = (
+        "UPDATE album "
+        "SET resized = TRUE "
+        "WHERE id = (%s)"
+    )
+
+    # create cursor
+    cursor = cnx.cursor()
+
+    # run statment
+    cursor.execute(image_resized,(album_id,))
+
+    # commit and close
+    cnx.commit()
+    cursor.close()
