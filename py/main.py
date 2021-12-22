@@ -36,8 +36,7 @@ for item in scraper_db.getDiscogsAlbums(cnx):
 for item in scraper_db.getLargeImages(cnx):
 
     # resize each image
-    if item['image'] != None:
-        scraper_db.resizeImage(cnx,item['id'],item['image'])
+    scraper_db.resizeImage(cnx,item['id'],item['image'])
 
 # disconnect from scraper_db
 cnx.close()

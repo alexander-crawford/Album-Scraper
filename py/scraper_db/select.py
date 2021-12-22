@@ -47,7 +47,10 @@ def getLargeImages(cnx):
 
     # create select statement
     get_large_images = (
-        "SELECT id,image FROM album WHERE resized IS FALSE"
+        "SELECT id,image "
+        "FROM album "
+        "WHERE resized IS FALSE "
+        "AND image IS NOT NULL"
     )
 
     # run statement
