@@ -34,9 +34,10 @@ for item in scraper_db.getDiscogsAlbums(cnx):
 
 # get images that need to be resized
 for item in scraper_db.getLargeImages(cnx):
-    # TODO: for each image create then call resize function
-    # TODO: uncomment below when function is completed 
-    # scraper_db.setImageResizedTrue(cnx,item['id'])
+
+    # resize each image
+    if item['image'] != None:
+        scraper_db.resizeImage(cnx,item['id'],item['image'])
 
 # disconnect from scraper_db
 cnx.close()

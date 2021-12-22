@@ -3,6 +3,7 @@ import requests
 import os
 import hashlib
 import config
+from PIL import Image
 
 def addYear(cnx,year,album_id):
 
@@ -81,20 +82,31 @@ def addImage(cnx,url,album_id):
             print("id",album_id,"added cover")
             return True
 
-def setImageResizedTrue(cnx,album_id):
-    # create sql statement
-    image_resized = (
+def resizeImage(cnx,id,image):
+
+    def resize(infile):
+        with Image.open(infile) as im:
+            (width, height) = (250,250)
+            im_resized = im.resize((width, height))
+            im_resized.save(infile)
+
+    def setResizedTrue(cnx,album_id):
+        # create sql statement
+        image_resized = (
         "UPDATE album "
         "SET resized = TRUE "
         "WHERE id = (%s)"
-    )
+        )
 
-    # create cursor
-    cursor = cnx.cursor()
+        # create cursor
+        cursor = cnx.cursor()
 
-    # run statment
-    cursor.execute(image_resized,(album_id,))
+        # run statment
+        cursor.execute(image_resized,(album_id,))
 
-    # commit and close
-    cnx.commit()
-    cursor.close()
+        # commit and close
+        cnx.commit()
+        cursor.close()
+
+    resize(config.image_path + image)
+    setResizedTrue(cnx,id)
