@@ -1,4 +1,5 @@
 <?php
+
   $statement = $mysqli->prepare("
     SELECT IFNULL(CONCAT('./img/',album.image),'./blank.svg') AS image,
     album.title AS title,
@@ -21,4 +22,5 @@
   $result = $statement->get_result();
 
   $mysqli->close();
+  
 ?>
