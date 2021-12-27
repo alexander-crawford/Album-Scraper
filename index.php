@@ -1,7 +1,16 @@
 <?php if (count($_GET) == 0): ?>
   <!DOCTYPE html>
   <html lang="en" dir="ltr">
-  <?php require 'head.php'; ?>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Album-Scraper</title>
+    <script type="text/javascript" src="./js/jquery.min.js" defer></script>
+    <script type="text/javascript" src="./js/isotope.pkgd.min.js" defer></script>
+    <script type="text/javascript" src="./js/infinite-scroll.pkgd.min.js" defer></script>
+    <script type="text/javascript" src="./js/script.js" defer></script>
+    <link rel="stylesheet" href="./css/styles.css">
+  </head>
   <body>
     <div class="grid">
 <?php endif; ?>
