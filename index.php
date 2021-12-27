@@ -18,16 +18,24 @@
 
 <?php
 
-  // create connection to sql database
   $mysqli = new mysqli("127.0.0.1", "root", "123456", "scraper_db",3306);
 
-  if (!empty($_GET['artist_id']) and !empty($_GET['album_id']) and !empty($_GET['position'])) {
+  $artist_bool = !empty($_GET['artist_id']);
+  $album_bool = !empty($_GET['album_id']);
+  $position_bool = !empty($_GET['position']);
+
+  if ($artist_bool and $album_bool and $position_bool) {
+
     require 'get_single.php';
-  }else{
+
+  } else {
+
     require 'get_multiple.php';
+
   }
 
 ?>
+
 <?php require 'print_album.php'; ?>
 
 <!-- Close tags required on first request of page -->
