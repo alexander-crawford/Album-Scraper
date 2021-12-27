@@ -1,4 +1,5 @@
 <?php
+
   $statement = $mysqli->prepare("
     SELECT ROW_NUMBER() OVER (ORDER BY count(source_album.album_id),
     album.year DESC,artist.name ASC, album.title ASC) position,
@@ -31,4 +32,5 @@
   $result = $statement->get_result();
 
   $mysqli->close();
+
 ?>
