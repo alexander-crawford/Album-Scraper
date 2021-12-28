@@ -38,5 +38,8 @@ for item in scraper_db.getLargeImages(cnx):
     # resize each image
     scraper_db.resizeImage(cnx,item['id'],item['image'])
 
+# insert into main table
+scraper_db.insertIntoMain(cnx)
+
 # disconnect from scraper_db
 cnx.close()
