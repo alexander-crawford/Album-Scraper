@@ -1,5 +1,6 @@
 from .connect import connect
 from .insert import insert
+from .insert import insertIntoMain
 from .select import getDiscogsAlbums
 from .select import getSources
 from .select import getLargeImages
