@@ -25,17 +25,19 @@ function double(data) {
   let artist_id = $(data).find('.artist_id').text();
   let album_id = $(data).find('.album_id').text();
   let position = $(data).find('.position').text();
-  $.ajax({
-    url : url,
-    data : {
-      artist_id : artist_id,
-      album_id : album_id,
-      position : position
-    },
-    success : function (data) {
-      Iso.insert($(data).siblings())
-    }
-  });
+  if (artist_id.length != 0 && album_id.length != 0) {
+    $.ajax({
+      url : url,
+      data : {
+        artist_id : artist_id,
+        album_id : album_id,
+        position : position
+      },
+      success : function (data) {
+        Iso.insert($(data).siblings())
+      }
+    });
+  }
 };
 function single(data) {
   let text_container = $(data).find('.text-container--off');
