@@ -21,7 +21,7 @@ Grid.on('append.infiniteScroll',function() {
   Grid.isotope();
 });
 function double(data) {
-  const url = 'http://localhost:8000/'
+  const url = 'http://localhost:8000/';
   let artist_id = $(data).find('.artist_id').text();
   let album_id = $(data).find('.album_id').text();
   let position = $(data).find('.position').text();
@@ -37,7 +37,8 @@ function double(data) {
         Iso.insert($(data).siblings())
       }
     });
-  }
+    $(data).prop('ondblclick',null);
+  };
 };
 function single(data) {
   let text_container = $(data).find('.text-container--off');
