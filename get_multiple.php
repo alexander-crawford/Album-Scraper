@@ -11,9 +11,17 @@
 
   $page = 0;
 
-  if (!empty($_GET['page']) and filter_var($_GET['page'],FILTER_VALIDATE_INT)) {
+  if (isset($_GET['page'])) {
 
-    $page = ($_GET['page'] * 8) - 8;
+    $page_raw = $_GET['page'];
+
+    $page_sanitised = filter_var($page_raw,FILTER_SANITIZE_NUMBER_INT);
+
+    if (filter_var($page_sanitised,FILTER_VALIDATE_INT)) {
+
+      $page = ($page_sanitised * 8) - 8;
+
+    }
 
   }
 
