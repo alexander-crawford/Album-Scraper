@@ -23,7 +23,7 @@
 
         <?php else: ?>
 
-        <p class="position"><?php echo $_GET['position'] ?></p>
+        <p class="position" hidden><?php echo $_GET['position'] ?></p>
 
         <?php endif; ?>
 
@@ -33,5 +33,5 @@
 
       </div>
     </div>
-    
+
 <?php endforeach; ?>
