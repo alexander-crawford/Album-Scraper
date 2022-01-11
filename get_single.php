@@ -11,9 +11,25 @@
     AND album.id <> (?);
   ");
 
-  $artist_id = $_GET["artist_id"];
+  $artist_id_raw = $_GET["artist_id"];
 
-  $album_id = $_GET["album_id"];
+  $artist_id_sanitised = filter_var($artist_id_raw,FILTER_SANITIZE_NUMBER_INT);
+
+  if (filter_var($artist_id_sanitised,FILTER_VALIDATE_INT)) {
+
+    $artist_id = $artist_id_sanitised;
+
+  }
+
+  $album_id_raw = $_GET["album_id"];
+
+  $album_id_sanitised = filter_var($album_id_raw,FILTER_SANITIZE_NUMBER_INT);
+
+  if (filter_var($album_id_sanitised,FILTER_VALIDATE_INT)) {
+
+    $album_id = $album_id_sanitised;
+
+  }
 
   $statement->bind_param("ii",$artist_id,$album_id);
 
@@ -22,5 +38,5 @@
   $result = $statement->get_result();
 
   $mysqli->close();
-  
+
 ?>
